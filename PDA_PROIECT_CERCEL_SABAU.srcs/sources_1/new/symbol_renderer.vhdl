@@ -1,3 +1,4 @@
+-- TOP layer (includes vga_timing & random_matrix)
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
