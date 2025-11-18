@@ -16,36 +16,42 @@ set_property IOSTANDARD LVCMOS33 [get_ports btnC]
 set_property PACKAGE_PIN V17 [get_ports reset]
 set_property IOSTANDARD LVCMOS33 [get_ports reset]
 
-## ====================================================================
-## VGA Red[3:0]
-## ====================================================================
-set_property PACKAGE_PIN A3 [get_ports {red[0]}]
-set_property PACKAGE_PIN B4 [get_ports {red[1]}]
-set_property PACKAGE_PIN C5 [get_ports {red[2]}]
-set_property PACKAGE_PIN A4 [get_ports {red[3]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {red[*]}]
+## ===============================
+## VGA RED [3:0]
+## Basys3: R0=G19, R1=H19, R2=J19, R3=N19
+## ===============================
+set_property PACKAGE_PIN G19 [get_ports {VGA_R[0]}]
+set_property PACKAGE_PIN H19 [get_ports {VGA_R[1]}]
+set_property PACKAGE_PIN J19 [get_ports {VGA_R[2]}]
+set_property PACKAGE_PIN N19 [get_ports {VGA_R[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_R[*]}]
 
-## ====================================================================
-## VGA Green[3:0]
-## ====================================================================
-set_property PACKAGE_PIN C6 [get_ports green[0]]
-set_property PACKAGE_PIN A5 [get_ports green[1]]
-set_property PACKAGE_PIN B6 [get_ports green[2]]
-set_property PACKAGE_PIN A6 [get_ports green[3]]
-set_property IOSTANDARD LVCMOS33 [get_ports green[*]]
+## ===============================
+## VGA GREEN [3:0]
+## Basys3: G0=J17, G1=H17, G2=G17, G3=D17
+## ===============================
+set_property PACKAGE_PIN J17 [get_ports {VGA_G[0]}]
+set_property PACKAGE_PIN H17 [get_ports {VGA_G[1]}]
+set_property PACKAGE_PIN G17 [get_ports {VGA_G[2]}]
+set_property PACKAGE_PIN D17 [get_ports {VGA_G[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_G[*]}]
 
-## ====================================================================
-## VGA Blue[3:0]
-## ====================================================================
-set_property PACKAGE_PIN B7 [get_ports {blue[0]}]
-set_property PACKAGE_PIN C7 [get_ports {blue[1]}]
-set_property PACKAGE_PIN D7 [get_ports {blue[2]}]
-set_property PACKAGE_PIN D8 [get_ports {blue[3]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {blue[*]}]
+## ===============================
+## VGA BLUE [3:0]
+## Basys3: B0=N18, B1=L18, B2=K18, B3=J18
+## ===============================
+set_property PACKAGE_PIN N18 [get_ports {VGA_B[0]}]
+set_property PACKAGE_PIN L18 [get_ports {VGA_B[1]}]
+set_property PACKAGE_PIN K18 [get_ports {VGA_B[2]}]
+set_property PACKAGE_PIN J18 [get_ports {VGA_B[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_B[*]}]
 
-## ====================================================================
-## VGA Sync Signals
-## ====================================================================
-set_property PACKAGE_PIN B11 [get_ports hsync]
-set_property PACKAGE_PIN B12 [get_ports vsync]
-set_property IOSTANDARD LVCMOS33 [get_ports {hsync vsync}]
+## ===============================
+## VGA SYNC
+## Basys3: HS=P19, VS=R19
+## ===============================
+set_property PACKAGE_PIN P19 [get_ports {VGA_HS}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_HS}]
+
+set_property PACKAGE_PIN R19 [get_ports {VGA_VS}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_VS}]
