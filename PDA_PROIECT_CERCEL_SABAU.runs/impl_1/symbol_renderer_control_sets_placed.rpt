@@ -1,0 +1,88 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
+| Date         : Mon Dec 15 19:13:46 2025
+| Host         : radu-Precision-5550 running 64-bit Ubuntu 24.04.2 LTS
+| Command      : report_control_sets -verbose -file symbol_renderer_control_sets_placed.rpt
+| Design       : symbol_renderer
+| Device       : xc7a35t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    10 |
+|    Minimum number of control sets                        |    10 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    29 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    10 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     3 |
+| >= 6 to < 8        |     1 |
+| >= 8 to < 10       |     1 |
+| >= 10 to < 12      |     2 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     1 |
+| >= 16              |     2 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               7 |            5 |
+| No           | No                    | Yes                    |              82 |           35 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |              98 |           27 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++-------------------+---------------------------------+------------------+------------------+----------------+--------------+
+|    Clock Signal   |          Enable Signal          | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
++-------------------+---------------------------------+------------------+------------------+----------------+--------------+
+|  clk100_IBUF_BUFG | stake_ctrl/stake_val[3]_i_1_n_0 | reset_IBUF       |                1 |              4 |         4.00 |
+|  clk100_IBUF_BUFG | rand_mat/btn_edge/E[0]          | reset_IBUF       |                1 |              4 |         4.00 |
+|  clk100_IBUF_BUFG | win_anim/stored_rows[2]_i_1_n_0 | reset_IBUF       |                1 |              4 |         4.00 |
+|  clk100_IBUF_BUFG |                                 |                  |                5 |              7 |         1.40 |
+|  clk100_IBUF_BUFG | rand_mat/next_rand_reg_n_0      | reset_IBUF       |                2 |              8 |         4.00 |
+|  vga_gen/clk25    |                                 | reset_IBUF       |                4 |             10 |         2.50 |
+|  vga_gen/clk25    | vga_gen/v_count                 | reset_IBUF       |                5 |             10 |         2.00 |
+|  clk100_IBUF_BUFG | rand_mat/spin_done              | reset_IBUF       |                3 |             14 |         4.67 |
+|  clk100_IBUF_BUFG | credits/total_counter           | reset_IBUF       |               14 |             54 |         3.86 |
+|  clk100_IBUF_BUFG |                                 | reset_IBUF       |               31 |             72 |         2.32 |
++-------------------+---------------------------------+------------------+------------------+----------------+--------------+
+
+

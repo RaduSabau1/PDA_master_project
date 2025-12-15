@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Mon Dec 15 19:12:11 2025
+# Process ID         : 48779
+# Current directory  : /home/radu/workspace/SCHOOL/PDA/PDA_master_project/PDA_PROIECT_CERCEL_SABAU.runs/synth_1
+# Command line       : vivado -log symbol_renderer.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source symbol_renderer.tcl
+# Log file           : /home/radu/workspace/SCHOOL/PDA/PDA_master_project/PDA_PROIECT_CERCEL_SABAU.runs/synth_1/symbol_renderer.vds
+# Journal file       : /home/radu/workspace/SCHOOL/PDA/PDA_master_project/PDA_PROIECT_CERCEL_SABAU.runs/synth_1/vivado.jou
+# Running On         : radu-Precision-5550
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.2 LTS
+# Processor Detail   : Intel(R) Core(TM) i7-10850H CPU @ 2.70GHz
+# CPU Frequency      : 2898.924 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16501 MB
+# Swap memory        : 4294 MB
+# Total Virtual      : 20796 MB
+# Available Virtual  : 12275 MB
+#-----------------------------------------------------------
+source symbol_renderer.tcl -notrace

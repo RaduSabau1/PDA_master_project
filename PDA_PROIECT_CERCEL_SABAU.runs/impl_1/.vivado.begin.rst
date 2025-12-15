@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="radu" Host="radu-Precision-5550" Pid="7781" HostCore="12" HostMemory="16114340">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="radu" Host="radu-Precision-5550" Pid="8582" HostCore="12" HostMemory="16114340">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="radu" Host="radu-Precision-5550" Pid="28486" HostCore="12" HostMemory="16114340">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="radu" Host="radu-Precision-5550" Pid="29173" HostCore="12" HostMemory="16114340">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="radu" Host="radu-Precision-5550" Pid="49140" HostCore="12" HostMemory="16114340">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="radu" Host="radu-Precision-5550" Pid="69602" HostCore="12" HostMemory="16114340">
+    </Process>
+</ProcessHandle>
