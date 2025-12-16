@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-| Date         : Mon Dec 15 19:14:07 2025
+| Date         : Mon Dec 15 20:18:52 2025
 | Host         : radu-Precision-5550 running 64-bit Ubuntu 24.04.2 LTS
 | Command      : report_timing_summary -max_paths 10 -routable_nets -report_unconstrained -file symbol_renderer_timing_summary_routed.rpt -pb symbol_renderer_timing_summary_routed.pb -rpx symbol_renderer_timing_summary_routed.rpx -warn_on_violation
 | Design       : symbol_renderer
@@ -43,7 +43,8 @@ Timing Summary Report
 
 Rule       Severity          Description                  Violations  
 ---------  ----------------  ---------------------------  ----------  
-TIMING-17  Critical Warning  Non-clocked sequential cell  187         
+TIMING-17  Critical Warning  Non-clocked sequential cell  332         
+DPIR-1     Warning           Asynchronous driver check    4           
 
 Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
 
@@ -53,11 +54,11 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (187)
+1. checking no_clock (332)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (465)
-5. checking no_input_delay (4)
+4. checking unconstrained_internal_endpoints (870)
+5. checking no_input_delay (6)
 6. checking no_output_delay (25)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
@@ -66,9 +67,9 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (187)
+1. checking no_clock (332)
 --------------------------
- There are 167 register/latch pins with no clock driven by root clock pin: clk100 (HIGH)
+ There are 312 register/latch pins with no clock driven by root clock pin: clk100 (HIGH)
 
  There are 20 register/latch pins with no clock driven by root clock pin: vga_gen/clk25_reg/Q (HIGH)
 
@@ -83,16 +84,16 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (465)
+4. checking unconstrained_internal_endpoints (870)
 --------------------------------------------------
- There are 465 pins that are not constrained for maximum delay. (HIGH)
+ There are 870 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (4)
+5. checking no_input_delay (6)
 ------------------------------
- There are 4 input ports with no input delay specified. (HIGH)
+ There are 6 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
@@ -144,7 +145,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-        inf        0.000                      0                  490          inf        0.000                      0                  490           NA           NA                      NA                    NA  
+        inf        0.000                      0                  895          inf        0.000                      0                  895           NA           NA                      NA                    NA  
 
 
 There are no user specified timing constraints.
@@ -213,581 +214,781 @@ Path Group:  (none)
 From Clock:  
   To Clock:  
 
-Max Delay           490 Endpoints
-Min Delay           490 Endpoints
+Max Delay           895 Endpoints
+Min Delay           895 Endpoints
 --------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 vga_gen/v_count_reg[3]/C
+  Source:                 vga_gen/v_count_reg[5]/C
                             (rising edge-triggered cell FDCE)
   Destination:            VGA_G[3]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        20.356ns  (logic 8.887ns (43.661%)  route 11.468ns (56.339%))
-  Logic Levels:           17  (CARRY4=7 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=4 OBUF=1)
+  Data Path Delay:        27.477ns  (logic 12.795ns (46.567%)  route 14.682ns (53.433%))
+  Logic Levels:           24  (CARRY4=12 DSP48E1=1 FDCE=1 LUT1=1 LUT3=3 LUT6=5 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X7Y30          FDCE                         0.000     0.000 r  vga_gen/v_count_reg[3]/C
-    SLICE_X7Y30          FDCE (Prop_fdce_C_Q)         0.419     0.419 r  vga_gen/v_count_reg[3]/Q
-                         net (fo=14, routed)          0.871     1.290    vga_gen/py[3]
-    SLICE_X5Y30          LUT2 (Prop_lut2_I0_O)        0.299     1.589 r  vga_gen/VGA_R_OBUF[3]_inst_i_67/O
-                         net (fo=1, routed)           0.000     1.589    vga_gen/VGA_R_OBUF[3]_inst_i_67_n_0
-    SLICE_X5Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550     2.139 r  vga_gen/VGA_R_OBUF[3]_inst_i_47/CO[3]
-                         net (fo=1, routed)           0.000     2.139    vga_gen/VGA_R_OBUF[3]_inst_i_47_n_0
-    SLICE_X5Y31          CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     2.452 r  vga_gen/VGA_R_OBUF[3]_inst_i_39/O[3]
-                         net (fo=7, routed)           1.042     3.494    vga_gen/VGA_R_OBUF[3]_inst_i_39_n_4
-    SLICE_X4Y30          LUT3 (Prop_lut3_I0_O)        0.336     3.830 r  vga_gen/VGA_R_OBUF[3]_inst_i_69/O
-                         net (fo=2, routed)           0.811     4.641    vga_gen/VGA_R_OBUF[3]_inst_i_69_n_0
-    SLICE_X4Y30          LUT5 (Prop_lut5_I0_O)        0.327     4.968 r  vga_gen/VGA_R_OBUF[3]_inst_i_72/O
-                         net (fo=1, routed)           0.000     4.968    vga_gen/VGA_R_OBUF[3]_inst_i_72_n_0
-    SLICE_X4Y30          CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     5.369 r  vga_gen/VGA_R_OBUF[3]_inst_i_52/CO[3]
-                         net (fo=1, routed)           0.000     5.369    vga_gen/VGA_R_OBUF[3]_inst_i_52_n_0
-    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271     5.640 r  vga_gen/VGA_R_OBUF[3]_inst_i_40/CO[0]
-                         net (fo=2, routed)           0.650     6.290    vga_gen/VGA_R_OBUF[3]_inst_i_40_n_3
-    SLICE_X4Y32          LUT4 (Prop_lut4_I3_O)        0.399     6.689 r  vga_gen/VGA_R_OBUF[3]_inst_i_35/O
-                         net (fo=5, routed)           1.026     7.715    vga_gen/VGA_R_OBUF[3]_inst_i_35_n_0
-    SLICE_X2Y31          LUT6 (Prop_lut6_I1_O)        0.326     8.041 r  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
-                         net (fo=1, routed)           0.660     8.701    vga_gen/symbol_id3[1]
-    SLICE_X3Y31          CARRY4 (Prop_carry4_DI[3]_CO[3])
-                                                      0.385     9.086 r  vga_gen/VGA_R_OBUF[3]_inst_i_4/CO[3]
-                         net (fo=1, routed)           0.000     9.086    vga_gen/VGA_R_OBUF[3]_inst_i_4_n_0
-    SLICE_X3Y32          CARRY4 (Prop_carry4_CI_O[0])
-                                                      0.222     9.308 r  vga_gen/VGA_R_OBUF[3]_inst_i_31/O[0]
-                         net (fo=1, routed)           0.798    10.106    vga_gen/symbol_id2[4]
-    SLICE_X2Y28          CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.554    10.660 r  vga_gen/VGA_R_OBUF[3]_inst_i_11/O[3]
-                         net (fo=10, routed)          1.047    11.707    rand_mat/VGA_R_OBUF[3]_inst_i_5_0[3]
-    SLICE_X2Y26          LUT6 (Prop_lut6_I4_O)        0.307    12.014 r  rand_mat/VGA_R_OBUF[3]_inst_i_13/O
-                         net (fo=1, routed)           0.796    12.810    rand_mat/VGA_R_OBUF[3]_inst_i_13_n_0
-    SLICE_X2Y26          LUT6 (Prop_lut6_I5_O)        0.124    12.934 r  rand_mat/VGA_R_OBUF[3]_inst_i_3/O
-                         net (fo=3, routed)           0.964    13.898    rand_mat/VGA_R_OBUF[3]_inst_i_3_n_0
-    SLICE_X0Y28          LUT6 (Prop_lut6_I4_O)        0.124    14.022 r  rand_mat/VGA_G_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.803    16.825    VGA_G_OBUF[0]
-    D17                  OBUF (Prop_obuf_I_O)         3.530    20.356 r  VGA_G_OBUF[3]_inst/O
-                         net (fo=0)                   0.000    20.356    VGA_G[3]
+    SLICE_X3Y2           FDCE                         0.000     0.000 r  vga_gen/v_count_reg[5]/C
+    SLICE_X3Y2           FDCE (Prop_fdce_C_Q)         0.456     0.456 f  vga_gen/v_count_reg[5]/Q
+                         net (fo=30, routed)          2.377     2.833    vga_gen/py[5]
+    SLICE_X5Y6           LUT6 (Prop_lut6_I1_O)        0.124     2.957 r  vga_gen/in_text_region6_i_1/O
+                         net (fo=21, routed)          1.497     4.454    double_ctrl/A[10]
+    DSP48_X0Y0           DSP48E1 (Prop_dsp48e1_A[21]_P[6])
+                                                      3.841     8.295 f  double_ctrl/in_text_region6/P[6]
+                         net (fo=3, routed)           1.165     9.460    double_ctrl/in_text_region6_n_99
+    SLICE_X8Y1           LUT1 (Prop_lut1_I0_O)        0.124     9.584 r  double_ctrl/VGA_R_OBUF[3]_inst_i_311/O
+                         net (fo=1, routed)           0.000     9.584    double_ctrl/p_0_out[6]
+    SLICE_X8Y1           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    10.117 r  double_ctrl/VGA_R_OBUF[3]_inst_i_297/CO[3]
+                         net (fo=1, routed)           0.000    10.117    double_ctrl/VGA_R_OBUF[3]_inst_i_297_n_0
+    SLICE_X8Y2           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    10.440 f  double_ctrl/VGA_R_OBUF[3]_inst_i_303/O[1]
+                         net (fo=1, routed)           0.640    11.080    double_ctrl/in_text_region6__0[10]
+    SLICE_X9Y1           LUT3 (Prop_lut3_I1_O)        0.306    11.386 r  double_ctrl/VGA_R_OBUF[3]_inst_i_299/O
+                         net (fo=1, routed)           0.000    11.386    double_ctrl/VGA_R_OBUF[3]_inst_i_299_n_0
+    SLICE_X9Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    11.787 r  double_ctrl/VGA_R_OBUF[3]_inst_i_265/CO[3]
+                         net (fo=1, routed)           0.000    11.787    double_ctrl/VGA_R_OBUF[3]_inst_i_265_n_0
+    SLICE_X9Y2           CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.009 r  double_ctrl/VGA_R_OBUF[3]_inst_i_252/O[0]
+                         net (fo=3, routed)           1.206    13.215    double_ctrl/VGA_R_OBUF[3]_inst_i_252_n_7
+    SLICE_X6Y1           LUT3 (Prop_lut3_I0_O)        0.299    13.514 r  double_ctrl/VGA_R_OBUF[3]_inst_i_293/O
+                         net (fo=1, routed)           0.000    13.514    double_ctrl/VGA_R_OBUF[3]_inst_i_293_n_0
+    SLICE_X6Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    13.890 r  double_ctrl/VGA_R_OBUF[3]_inst_i_263/CO[3]
+                         net (fo=1, routed)           0.000    13.890    double_ctrl/VGA_R_OBUF[3]_inst_i_263_n_0
+    SLICE_X6Y2           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.007 r  double_ctrl/VGA_R_OBUF[3]_inst_i_231/CO[3]
+                         net (fo=1, routed)           0.000    14.007    double_ctrl/VGA_R_OBUF[3]_inst_i_231_n_0
+    SLICE_X6Y3           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.124 r  double_ctrl/VGA_R_OBUF[3]_inst_i_230/CO[3]
+                         net (fo=1, routed)           0.000    14.124    double_ctrl/VGA_R_OBUF[3]_inst_i_230_n_0
+    SLICE_X6Y4           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.241 r  double_ctrl/VGA_R_OBUF[3]_inst_i_193/CO[3]
+                         net (fo=1, routed)           0.000    14.241    double_ctrl/VGA_R_OBUF[3]_inst_i_193_n_0
+    SLICE_X6Y5           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.358 r  double_ctrl/VGA_R_OBUF[3]_inst_i_192/CO[3]
+                         net (fo=1, routed)           0.000    14.358    double_ctrl/VGA_R_OBUF[3]_inst_i_192_n_0
+    SLICE_X6Y6           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.475 r  double_ctrl/VGA_R_OBUF[3]_inst_i_152/CO[3]
+                         net (fo=1, routed)           0.000    14.475    double_ctrl/VGA_R_OBUF[3]_inst_i_152_n_0
+    SLICE_X6Y7           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    14.798 r  double_ctrl/VGA_R_OBUF[3]_inst_i_151/O[1]
+                         net (fo=2, routed)           0.946    15.744    double_ctrl/VGA_R_OBUF[3]_inst_i_151_n_6
+    SLICE_X5Y5           LUT3 (Prop_lut3_I2_O)        0.306    16.050 r  double_ctrl/VGA_R_OBUF[3]_inst_i_108/O
+                         net (fo=1, routed)           0.000    16.050    double_ctrl/VGA_R_OBUF[3]_inst_i_108_n_0
+    SLICE_X5Y5           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    16.600 r  double_ctrl/VGA_R_OBUF[3]_inst_i_70/CO[3]
+                         net (fo=1, routed)           1.111    17.711    vga_gen/VGA_R_OBUF[3]_inst_i_14_0[0]
+    SLICE_X2Y5           LUT6 (Prop_lut6_I2_O)        0.124    17.835 r  vga_gen/VGA_R_OBUF[3]_inst_i_41/O
+                         net (fo=1, routed)           0.830    18.665    vga_gen/VGA_R_OBUF[3]_inst_i_41_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I3_O)        0.124    18.789 f  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
+                         net (fo=1, routed)           0.466    19.255    vga_gen/VGA_R_OBUF[3]_inst_i_14_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I1_O)        0.124    19.379 f  vga_gen/VGA_R_OBUF[3]_inst_i_4/O
+                         net (fo=3, routed)           0.972    20.350    vga_gen/v_count_reg[8]_0
+    SLICE_X3Y10          LUT6 (Prop_lut6_I5_O)        0.124    20.474 r  vga_gen/VGA_G_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           3.473    23.947    VGA_G_OBUF[0]
+    D17                  OBUF (Prop_obuf_I_O)         3.530    27.477 r  VGA_G_OBUF[3]_inst/O
+                         net (fo=0)                   0.000    27.477    VGA_G[3]
     D17                                                               r  VGA_G[3] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 vga_gen/v_count_reg[3]/C
+  Source:                 vga_gen/v_count_reg[5]/C
                             (rising edge-triggered cell FDCE)
   Destination:            VGA_R[1]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        19.975ns  (logic 8.876ns (44.437%)  route 11.099ns (55.563%))
-  Logic Levels:           17  (CARRY4=7 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=4 OBUF=1)
+  Data Path Delay:        27.381ns  (logic 12.784ns (46.690%)  route 14.597ns (53.310%))
+  Logic Levels:           24  (CARRY4=12 DSP48E1=1 FDCE=1 LUT1=1 LUT3=3 LUT6=5 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X7Y30          FDCE                         0.000     0.000 r  vga_gen/v_count_reg[3]/C
-    SLICE_X7Y30          FDCE (Prop_fdce_C_Q)         0.419     0.419 r  vga_gen/v_count_reg[3]/Q
-                         net (fo=14, routed)          0.871     1.290    vga_gen/py[3]
-    SLICE_X5Y30          LUT2 (Prop_lut2_I0_O)        0.299     1.589 r  vga_gen/VGA_R_OBUF[3]_inst_i_67/O
-                         net (fo=1, routed)           0.000     1.589    vga_gen/VGA_R_OBUF[3]_inst_i_67_n_0
-    SLICE_X5Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550     2.139 r  vga_gen/VGA_R_OBUF[3]_inst_i_47/CO[3]
-                         net (fo=1, routed)           0.000     2.139    vga_gen/VGA_R_OBUF[3]_inst_i_47_n_0
-    SLICE_X5Y31          CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     2.452 r  vga_gen/VGA_R_OBUF[3]_inst_i_39/O[3]
-                         net (fo=7, routed)           1.042     3.494    vga_gen/VGA_R_OBUF[3]_inst_i_39_n_4
-    SLICE_X4Y30          LUT3 (Prop_lut3_I0_O)        0.336     3.830 r  vga_gen/VGA_R_OBUF[3]_inst_i_69/O
-                         net (fo=2, routed)           0.811     4.641    vga_gen/VGA_R_OBUF[3]_inst_i_69_n_0
-    SLICE_X4Y30          LUT5 (Prop_lut5_I0_O)        0.327     4.968 r  vga_gen/VGA_R_OBUF[3]_inst_i_72/O
-                         net (fo=1, routed)           0.000     4.968    vga_gen/VGA_R_OBUF[3]_inst_i_72_n_0
-    SLICE_X4Y30          CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     5.369 r  vga_gen/VGA_R_OBUF[3]_inst_i_52/CO[3]
-                         net (fo=1, routed)           0.000     5.369    vga_gen/VGA_R_OBUF[3]_inst_i_52_n_0
-    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271     5.640 r  vga_gen/VGA_R_OBUF[3]_inst_i_40/CO[0]
-                         net (fo=2, routed)           0.650     6.290    vga_gen/VGA_R_OBUF[3]_inst_i_40_n_3
-    SLICE_X4Y32          LUT4 (Prop_lut4_I3_O)        0.399     6.689 r  vga_gen/VGA_R_OBUF[3]_inst_i_35/O
-                         net (fo=5, routed)           1.026     7.715    vga_gen/VGA_R_OBUF[3]_inst_i_35_n_0
-    SLICE_X2Y31          LUT6 (Prop_lut6_I1_O)        0.326     8.041 r  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
-                         net (fo=1, routed)           0.660     8.701    vga_gen/symbol_id3[1]
-    SLICE_X3Y31          CARRY4 (Prop_carry4_DI[3]_CO[3])
-                                                      0.385     9.086 r  vga_gen/VGA_R_OBUF[3]_inst_i_4/CO[3]
-                         net (fo=1, routed)           0.000     9.086    vga_gen/VGA_R_OBUF[3]_inst_i_4_n_0
-    SLICE_X3Y32          CARRY4 (Prop_carry4_CI_O[0])
-                                                      0.222     9.308 r  vga_gen/VGA_R_OBUF[3]_inst_i_31/O[0]
-                         net (fo=1, routed)           0.798    10.106    vga_gen/symbol_id2[4]
-    SLICE_X2Y28          CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.554    10.660 r  vga_gen/VGA_R_OBUF[3]_inst_i_11/O[3]
-                         net (fo=10, routed)          1.047    11.707    rand_mat/VGA_R_OBUF[3]_inst_i_5_0[3]
-    SLICE_X2Y26          LUT6 (Prop_lut6_I4_O)        0.307    12.014 r  rand_mat/VGA_R_OBUF[3]_inst_i_13/O
-                         net (fo=1, routed)           0.796    12.810    rand_mat/VGA_R_OBUF[3]_inst_i_13_n_0
-    SLICE_X2Y26          LUT6 (Prop_lut6_I5_O)        0.124    12.934 r  rand_mat/VGA_R_OBUF[3]_inst_i_3/O
-                         net (fo=3, routed)           1.158    14.092    rand_mat/VGA_R_OBUF[3]_inst_i_3_n_0
-    SLICE_X0Y28          LUT6 (Prop_lut6_I1_O)        0.124    14.216 r  rand_mat/VGA_R_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.240    16.456    VGA_R_OBUF[0]
-    H19                  OBUF (Prop_obuf_I_O)         3.519    19.975 r  VGA_R_OBUF[1]_inst/O
-                         net (fo=0)                   0.000    19.975    VGA_R[1]
+    SLICE_X3Y2           FDCE                         0.000     0.000 r  vga_gen/v_count_reg[5]/C
+    SLICE_X3Y2           FDCE (Prop_fdce_C_Q)         0.456     0.456 f  vga_gen/v_count_reg[5]/Q
+                         net (fo=30, routed)          2.377     2.833    vga_gen/py[5]
+    SLICE_X5Y6           LUT6 (Prop_lut6_I1_O)        0.124     2.957 r  vga_gen/in_text_region6_i_1/O
+                         net (fo=21, routed)          1.497     4.454    double_ctrl/A[10]
+    DSP48_X0Y0           DSP48E1 (Prop_dsp48e1_A[21]_P[6])
+                                                      3.841     8.295 f  double_ctrl/in_text_region6/P[6]
+                         net (fo=3, routed)           1.165     9.460    double_ctrl/in_text_region6_n_99
+    SLICE_X8Y1           LUT1 (Prop_lut1_I0_O)        0.124     9.584 r  double_ctrl/VGA_R_OBUF[3]_inst_i_311/O
+                         net (fo=1, routed)           0.000     9.584    double_ctrl/p_0_out[6]
+    SLICE_X8Y1           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    10.117 r  double_ctrl/VGA_R_OBUF[3]_inst_i_297/CO[3]
+                         net (fo=1, routed)           0.000    10.117    double_ctrl/VGA_R_OBUF[3]_inst_i_297_n_0
+    SLICE_X8Y2           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    10.440 f  double_ctrl/VGA_R_OBUF[3]_inst_i_303/O[1]
+                         net (fo=1, routed)           0.640    11.080    double_ctrl/in_text_region6__0[10]
+    SLICE_X9Y1           LUT3 (Prop_lut3_I1_O)        0.306    11.386 r  double_ctrl/VGA_R_OBUF[3]_inst_i_299/O
+                         net (fo=1, routed)           0.000    11.386    double_ctrl/VGA_R_OBUF[3]_inst_i_299_n_0
+    SLICE_X9Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    11.787 r  double_ctrl/VGA_R_OBUF[3]_inst_i_265/CO[3]
+                         net (fo=1, routed)           0.000    11.787    double_ctrl/VGA_R_OBUF[3]_inst_i_265_n_0
+    SLICE_X9Y2           CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.009 r  double_ctrl/VGA_R_OBUF[3]_inst_i_252/O[0]
+                         net (fo=3, routed)           1.206    13.215    double_ctrl/VGA_R_OBUF[3]_inst_i_252_n_7
+    SLICE_X6Y1           LUT3 (Prop_lut3_I0_O)        0.299    13.514 r  double_ctrl/VGA_R_OBUF[3]_inst_i_293/O
+                         net (fo=1, routed)           0.000    13.514    double_ctrl/VGA_R_OBUF[3]_inst_i_293_n_0
+    SLICE_X6Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    13.890 r  double_ctrl/VGA_R_OBUF[3]_inst_i_263/CO[3]
+                         net (fo=1, routed)           0.000    13.890    double_ctrl/VGA_R_OBUF[3]_inst_i_263_n_0
+    SLICE_X6Y2           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.007 r  double_ctrl/VGA_R_OBUF[3]_inst_i_231/CO[3]
+                         net (fo=1, routed)           0.000    14.007    double_ctrl/VGA_R_OBUF[3]_inst_i_231_n_0
+    SLICE_X6Y3           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.124 r  double_ctrl/VGA_R_OBUF[3]_inst_i_230/CO[3]
+                         net (fo=1, routed)           0.000    14.124    double_ctrl/VGA_R_OBUF[3]_inst_i_230_n_0
+    SLICE_X6Y4           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.241 r  double_ctrl/VGA_R_OBUF[3]_inst_i_193/CO[3]
+                         net (fo=1, routed)           0.000    14.241    double_ctrl/VGA_R_OBUF[3]_inst_i_193_n_0
+    SLICE_X6Y5           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.358 r  double_ctrl/VGA_R_OBUF[3]_inst_i_192/CO[3]
+                         net (fo=1, routed)           0.000    14.358    double_ctrl/VGA_R_OBUF[3]_inst_i_192_n_0
+    SLICE_X6Y6           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.475 r  double_ctrl/VGA_R_OBUF[3]_inst_i_152/CO[3]
+                         net (fo=1, routed)           0.000    14.475    double_ctrl/VGA_R_OBUF[3]_inst_i_152_n_0
+    SLICE_X6Y7           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    14.798 r  double_ctrl/VGA_R_OBUF[3]_inst_i_151/O[1]
+                         net (fo=2, routed)           0.946    15.744    double_ctrl/VGA_R_OBUF[3]_inst_i_151_n_6
+    SLICE_X5Y5           LUT3 (Prop_lut3_I2_O)        0.306    16.050 r  double_ctrl/VGA_R_OBUF[3]_inst_i_108/O
+                         net (fo=1, routed)           0.000    16.050    double_ctrl/VGA_R_OBUF[3]_inst_i_108_n_0
+    SLICE_X5Y5           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    16.600 r  double_ctrl/VGA_R_OBUF[3]_inst_i_70/CO[3]
+                         net (fo=1, routed)           1.111    17.711    vga_gen/VGA_R_OBUF[3]_inst_i_14_0[0]
+    SLICE_X2Y5           LUT6 (Prop_lut6_I2_O)        0.124    17.835 r  vga_gen/VGA_R_OBUF[3]_inst_i_41/O
+                         net (fo=1, routed)           0.830    18.665    vga_gen/VGA_R_OBUF[3]_inst_i_41_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I3_O)        0.124    18.789 f  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
+                         net (fo=1, routed)           0.466    19.255    vga_gen/VGA_R_OBUF[3]_inst_i_14_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I1_O)        0.124    19.379 f  vga_gen/VGA_R_OBUF[3]_inst_i_4/O
+                         net (fo=3, routed)           1.147    20.526    double_ctrl/VGA_R[0]_0
+    SLICE_X2Y10          LUT6 (Prop_lut6_I2_O)        0.124    20.650 r  double_ctrl/VGA_R_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           3.212    23.862    VGA_R_OBUF[0]
+    H19                  OBUF (Prop_obuf_I_O)         3.519    27.381 r  VGA_R_OBUF[1]_inst/O
+                         net (fo=0)                   0.000    27.381    VGA_R[1]
     H19                                                               r  VGA_R[1] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 vga_gen/v_count_reg[3]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            VGA_G[1]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        19.852ns  (logic 8.862ns (44.642%)  route 10.990ns (55.358%))
-  Logic Levels:           17  (CARRY4=7 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=4 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y30          FDCE                         0.000     0.000 r  vga_gen/v_count_reg[3]/C
-    SLICE_X7Y30          FDCE (Prop_fdce_C_Q)         0.419     0.419 r  vga_gen/v_count_reg[3]/Q
-                         net (fo=14, routed)          0.871     1.290    vga_gen/py[3]
-    SLICE_X5Y30          LUT2 (Prop_lut2_I0_O)        0.299     1.589 r  vga_gen/VGA_R_OBUF[3]_inst_i_67/O
-                         net (fo=1, routed)           0.000     1.589    vga_gen/VGA_R_OBUF[3]_inst_i_67_n_0
-    SLICE_X5Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550     2.139 r  vga_gen/VGA_R_OBUF[3]_inst_i_47/CO[3]
-                         net (fo=1, routed)           0.000     2.139    vga_gen/VGA_R_OBUF[3]_inst_i_47_n_0
-    SLICE_X5Y31          CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     2.452 r  vga_gen/VGA_R_OBUF[3]_inst_i_39/O[3]
-                         net (fo=7, routed)           1.042     3.494    vga_gen/VGA_R_OBUF[3]_inst_i_39_n_4
-    SLICE_X4Y30          LUT3 (Prop_lut3_I0_O)        0.336     3.830 r  vga_gen/VGA_R_OBUF[3]_inst_i_69/O
-                         net (fo=2, routed)           0.811     4.641    vga_gen/VGA_R_OBUF[3]_inst_i_69_n_0
-    SLICE_X4Y30          LUT5 (Prop_lut5_I0_O)        0.327     4.968 r  vga_gen/VGA_R_OBUF[3]_inst_i_72/O
-                         net (fo=1, routed)           0.000     4.968    vga_gen/VGA_R_OBUF[3]_inst_i_72_n_0
-    SLICE_X4Y30          CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     5.369 r  vga_gen/VGA_R_OBUF[3]_inst_i_52/CO[3]
-                         net (fo=1, routed)           0.000     5.369    vga_gen/VGA_R_OBUF[3]_inst_i_52_n_0
-    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271     5.640 r  vga_gen/VGA_R_OBUF[3]_inst_i_40/CO[0]
-                         net (fo=2, routed)           0.650     6.290    vga_gen/VGA_R_OBUF[3]_inst_i_40_n_3
-    SLICE_X4Y32          LUT4 (Prop_lut4_I3_O)        0.399     6.689 r  vga_gen/VGA_R_OBUF[3]_inst_i_35/O
-                         net (fo=5, routed)           1.026     7.715    vga_gen/VGA_R_OBUF[3]_inst_i_35_n_0
-    SLICE_X2Y31          LUT6 (Prop_lut6_I1_O)        0.326     8.041 r  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
-                         net (fo=1, routed)           0.660     8.701    vga_gen/symbol_id3[1]
-    SLICE_X3Y31          CARRY4 (Prop_carry4_DI[3]_CO[3])
-                                                      0.385     9.086 r  vga_gen/VGA_R_OBUF[3]_inst_i_4/CO[3]
-                         net (fo=1, routed)           0.000     9.086    vga_gen/VGA_R_OBUF[3]_inst_i_4_n_0
-    SLICE_X3Y32          CARRY4 (Prop_carry4_CI_O[0])
-                                                      0.222     9.308 r  vga_gen/VGA_R_OBUF[3]_inst_i_31/O[0]
-                         net (fo=1, routed)           0.798    10.106    vga_gen/symbol_id2[4]
-    SLICE_X2Y28          CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.554    10.660 r  vga_gen/VGA_R_OBUF[3]_inst_i_11/O[3]
-                         net (fo=10, routed)          1.047    11.707    rand_mat/VGA_R_OBUF[3]_inst_i_5_0[3]
-    SLICE_X2Y26          LUT6 (Prop_lut6_I4_O)        0.307    12.014 r  rand_mat/VGA_R_OBUF[3]_inst_i_13/O
-                         net (fo=1, routed)           0.796    12.810    rand_mat/VGA_R_OBUF[3]_inst_i_13_n_0
-    SLICE_X2Y26          LUT6 (Prop_lut6_I5_O)        0.124    12.934 r  rand_mat/VGA_R_OBUF[3]_inst_i_3/O
-                         net (fo=3, routed)           0.964    13.898    rand_mat/VGA_R_OBUF[3]_inst_i_3_n_0
-    SLICE_X0Y28          LUT6 (Prop_lut6_I4_O)        0.124    14.022 r  rand_mat/VGA_G_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.325    16.347    VGA_G_OBUF[0]
-    H17                  OBUF (Prop_obuf_I_O)         3.505    19.852 r  VGA_G_OBUF[1]_inst/O
-                         net (fo=0)                   0.000    19.852    VGA_G[1]
-    H17                                                               r  VGA_G[1] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga_gen/v_count_reg[3]/C
+  Source:                 vga_gen/v_count_reg[5]/C
                             (rising edge-triggered cell FDCE)
   Destination:            VGA_R[0]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        19.838ns  (logic 8.881ns (44.765%)  route 10.958ns (55.235%))
-  Logic Levels:           17  (CARRY4=7 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=4 OBUF=1)
+  Data Path Delay:        27.244ns  (logic 12.789ns (46.941%)  route 14.456ns (53.059%))
+  Logic Levels:           24  (CARRY4=12 DSP48E1=1 FDCE=1 LUT1=1 LUT3=3 LUT6=5 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X7Y30          FDCE                         0.000     0.000 r  vga_gen/v_count_reg[3]/C
-    SLICE_X7Y30          FDCE (Prop_fdce_C_Q)         0.419     0.419 r  vga_gen/v_count_reg[3]/Q
-                         net (fo=14, routed)          0.871     1.290    vga_gen/py[3]
-    SLICE_X5Y30          LUT2 (Prop_lut2_I0_O)        0.299     1.589 r  vga_gen/VGA_R_OBUF[3]_inst_i_67/O
-                         net (fo=1, routed)           0.000     1.589    vga_gen/VGA_R_OBUF[3]_inst_i_67_n_0
-    SLICE_X5Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550     2.139 r  vga_gen/VGA_R_OBUF[3]_inst_i_47/CO[3]
-                         net (fo=1, routed)           0.000     2.139    vga_gen/VGA_R_OBUF[3]_inst_i_47_n_0
-    SLICE_X5Y31          CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     2.452 r  vga_gen/VGA_R_OBUF[3]_inst_i_39/O[3]
-                         net (fo=7, routed)           1.042     3.494    vga_gen/VGA_R_OBUF[3]_inst_i_39_n_4
-    SLICE_X4Y30          LUT3 (Prop_lut3_I0_O)        0.336     3.830 r  vga_gen/VGA_R_OBUF[3]_inst_i_69/O
-                         net (fo=2, routed)           0.811     4.641    vga_gen/VGA_R_OBUF[3]_inst_i_69_n_0
-    SLICE_X4Y30          LUT5 (Prop_lut5_I0_O)        0.327     4.968 r  vga_gen/VGA_R_OBUF[3]_inst_i_72/O
-                         net (fo=1, routed)           0.000     4.968    vga_gen/VGA_R_OBUF[3]_inst_i_72_n_0
-    SLICE_X4Y30          CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     5.369 r  vga_gen/VGA_R_OBUF[3]_inst_i_52/CO[3]
-                         net (fo=1, routed)           0.000     5.369    vga_gen/VGA_R_OBUF[3]_inst_i_52_n_0
-    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271     5.640 r  vga_gen/VGA_R_OBUF[3]_inst_i_40/CO[0]
-                         net (fo=2, routed)           0.650     6.290    vga_gen/VGA_R_OBUF[3]_inst_i_40_n_3
-    SLICE_X4Y32          LUT4 (Prop_lut4_I3_O)        0.399     6.689 r  vga_gen/VGA_R_OBUF[3]_inst_i_35/O
-                         net (fo=5, routed)           1.026     7.715    vga_gen/VGA_R_OBUF[3]_inst_i_35_n_0
-    SLICE_X2Y31          LUT6 (Prop_lut6_I1_O)        0.326     8.041 r  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
-                         net (fo=1, routed)           0.660     8.701    vga_gen/symbol_id3[1]
-    SLICE_X3Y31          CARRY4 (Prop_carry4_DI[3]_CO[3])
-                                                      0.385     9.086 r  vga_gen/VGA_R_OBUF[3]_inst_i_4/CO[3]
-                         net (fo=1, routed)           0.000     9.086    vga_gen/VGA_R_OBUF[3]_inst_i_4_n_0
-    SLICE_X3Y32          CARRY4 (Prop_carry4_CI_O[0])
-                                                      0.222     9.308 r  vga_gen/VGA_R_OBUF[3]_inst_i_31/O[0]
-                         net (fo=1, routed)           0.798    10.106    vga_gen/symbol_id2[4]
-    SLICE_X2Y28          CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.554    10.660 r  vga_gen/VGA_R_OBUF[3]_inst_i_11/O[3]
-                         net (fo=10, routed)          1.047    11.707    rand_mat/VGA_R_OBUF[3]_inst_i_5_0[3]
-    SLICE_X2Y26          LUT6 (Prop_lut6_I4_O)        0.307    12.014 r  rand_mat/VGA_R_OBUF[3]_inst_i_13/O
-                         net (fo=1, routed)           0.796    12.810    rand_mat/VGA_R_OBUF[3]_inst_i_13_n_0
-    SLICE_X2Y26          LUT6 (Prop_lut6_I5_O)        0.124    12.934 r  rand_mat/VGA_R_OBUF[3]_inst_i_3/O
-                         net (fo=3, routed)           1.158    14.092    rand_mat/VGA_R_OBUF[3]_inst_i_3_n_0
-    SLICE_X0Y28          LUT6 (Prop_lut6_I1_O)        0.124    14.216 r  rand_mat/VGA_R_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.098    16.315    VGA_R_OBUF[0]
-    G19                  OBUF (Prop_obuf_I_O)         3.524    19.838 r  VGA_R_OBUF[0]_inst/O
-                         net (fo=0)                   0.000    19.838    VGA_R[0]
+    SLICE_X3Y2           FDCE                         0.000     0.000 r  vga_gen/v_count_reg[5]/C
+    SLICE_X3Y2           FDCE (Prop_fdce_C_Q)         0.456     0.456 f  vga_gen/v_count_reg[5]/Q
+                         net (fo=30, routed)          2.377     2.833    vga_gen/py[5]
+    SLICE_X5Y6           LUT6 (Prop_lut6_I1_O)        0.124     2.957 r  vga_gen/in_text_region6_i_1/O
+                         net (fo=21, routed)          1.497     4.454    double_ctrl/A[10]
+    DSP48_X0Y0           DSP48E1 (Prop_dsp48e1_A[21]_P[6])
+                                                      3.841     8.295 f  double_ctrl/in_text_region6/P[6]
+                         net (fo=3, routed)           1.165     9.460    double_ctrl/in_text_region6_n_99
+    SLICE_X8Y1           LUT1 (Prop_lut1_I0_O)        0.124     9.584 r  double_ctrl/VGA_R_OBUF[3]_inst_i_311/O
+                         net (fo=1, routed)           0.000     9.584    double_ctrl/p_0_out[6]
+    SLICE_X8Y1           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    10.117 r  double_ctrl/VGA_R_OBUF[3]_inst_i_297/CO[3]
+                         net (fo=1, routed)           0.000    10.117    double_ctrl/VGA_R_OBUF[3]_inst_i_297_n_0
+    SLICE_X8Y2           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    10.440 f  double_ctrl/VGA_R_OBUF[3]_inst_i_303/O[1]
+                         net (fo=1, routed)           0.640    11.080    double_ctrl/in_text_region6__0[10]
+    SLICE_X9Y1           LUT3 (Prop_lut3_I1_O)        0.306    11.386 r  double_ctrl/VGA_R_OBUF[3]_inst_i_299/O
+                         net (fo=1, routed)           0.000    11.386    double_ctrl/VGA_R_OBUF[3]_inst_i_299_n_0
+    SLICE_X9Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    11.787 r  double_ctrl/VGA_R_OBUF[3]_inst_i_265/CO[3]
+                         net (fo=1, routed)           0.000    11.787    double_ctrl/VGA_R_OBUF[3]_inst_i_265_n_0
+    SLICE_X9Y2           CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.009 r  double_ctrl/VGA_R_OBUF[3]_inst_i_252/O[0]
+                         net (fo=3, routed)           1.206    13.215    double_ctrl/VGA_R_OBUF[3]_inst_i_252_n_7
+    SLICE_X6Y1           LUT3 (Prop_lut3_I0_O)        0.299    13.514 r  double_ctrl/VGA_R_OBUF[3]_inst_i_293/O
+                         net (fo=1, routed)           0.000    13.514    double_ctrl/VGA_R_OBUF[3]_inst_i_293_n_0
+    SLICE_X6Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    13.890 r  double_ctrl/VGA_R_OBUF[3]_inst_i_263/CO[3]
+                         net (fo=1, routed)           0.000    13.890    double_ctrl/VGA_R_OBUF[3]_inst_i_263_n_0
+    SLICE_X6Y2           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.007 r  double_ctrl/VGA_R_OBUF[3]_inst_i_231/CO[3]
+                         net (fo=1, routed)           0.000    14.007    double_ctrl/VGA_R_OBUF[3]_inst_i_231_n_0
+    SLICE_X6Y3           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.124 r  double_ctrl/VGA_R_OBUF[3]_inst_i_230/CO[3]
+                         net (fo=1, routed)           0.000    14.124    double_ctrl/VGA_R_OBUF[3]_inst_i_230_n_0
+    SLICE_X6Y4           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.241 r  double_ctrl/VGA_R_OBUF[3]_inst_i_193/CO[3]
+                         net (fo=1, routed)           0.000    14.241    double_ctrl/VGA_R_OBUF[3]_inst_i_193_n_0
+    SLICE_X6Y5           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.358 r  double_ctrl/VGA_R_OBUF[3]_inst_i_192/CO[3]
+                         net (fo=1, routed)           0.000    14.358    double_ctrl/VGA_R_OBUF[3]_inst_i_192_n_0
+    SLICE_X6Y6           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.475 r  double_ctrl/VGA_R_OBUF[3]_inst_i_152/CO[3]
+                         net (fo=1, routed)           0.000    14.475    double_ctrl/VGA_R_OBUF[3]_inst_i_152_n_0
+    SLICE_X6Y7           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    14.798 r  double_ctrl/VGA_R_OBUF[3]_inst_i_151/O[1]
+                         net (fo=2, routed)           0.946    15.744    double_ctrl/VGA_R_OBUF[3]_inst_i_151_n_6
+    SLICE_X5Y5           LUT3 (Prop_lut3_I2_O)        0.306    16.050 r  double_ctrl/VGA_R_OBUF[3]_inst_i_108/O
+                         net (fo=1, routed)           0.000    16.050    double_ctrl/VGA_R_OBUF[3]_inst_i_108_n_0
+    SLICE_X5Y5           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    16.600 r  double_ctrl/VGA_R_OBUF[3]_inst_i_70/CO[3]
+                         net (fo=1, routed)           1.111    17.711    vga_gen/VGA_R_OBUF[3]_inst_i_14_0[0]
+    SLICE_X2Y5           LUT6 (Prop_lut6_I2_O)        0.124    17.835 r  vga_gen/VGA_R_OBUF[3]_inst_i_41/O
+                         net (fo=1, routed)           0.830    18.665    vga_gen/VGA_R_OBUF[3]_inst_i_41_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I3_O)        0.124    18.789 f  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
+                         net (fo=1, routed)           0.466    19.255    vga_gen/VGA_R_OBUF[3]_inst_i_14_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I1_O)        0.124    19.379 f  vga_gen/VGA_R_OBUF[3]_inst_i_4/O
+                         net (fo=3, routed)           1.147    20.526    double_ctrl/VGA_R[0]_0
+    SLICE_X2Y10          LUT6 (Prop_lut6_I2_O)        0.124    20.650 r  double_ctrl/VGA_R_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           3.071    23.721    VGA_R_OBUF[0]
+    G19                  OBUF (Prop_obuf_I_O)         3.524    27.244 r  VGA_R_OBUF[0]_inst/O
+                         net (fo=0)                   0.000    27.244    VGA_R[0]
     G19                                                               r  VGA_R[0] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 vga_gen/v_count_reg[3]/C
+  Source:                 vga_gen/v_count_reg[5]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            VGA_G[1]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        26.974ns  (logic 12.770ns (47.344%)  route 14.203ns (52.656%))
+  Logic Levels:           24  (CARRY4=12 DSP48E1=1 FDCE=1 LUT1=1 LUT3=3 LUT6=5 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y2           FDCE                         0.000     0.000 r  vga_gen/v_count_reg[5]/C
+    SLICE_X3Y2           FDCE (Prop_fdce_C_Q)         0.456     0.456 f  vga_gen/v_count_reg[5]/Q
+                         net (fo=30, routed)          2.377     2.833    vga_gen/py[5]
+    SLICE_X5Y6           LUT6 (Prop_lut6_I1_O)        0.124     2.957 r  vga_gen/in_text_region6_i_1/O
+                         net (fo=21, routed)          1.497     4.454    double_ctrl/A[10]
+    DSP48_X0Y0           DSP48E1 (Prop_dsp48e1_A[21]_P[6])
+                                                      3.841     8.295 f  double_ctrl/in_text_region6/P[6]
+                         net (fo=3, routed)           1.165     9.460    double_ctrl/in_text_region6_n_99
+    SLICE_X8Y1           LUT1 (Prop_lut1_I0_O)        0.124     9.584 r  double_ctrl/VGA_R_OBUF[3]_inst_i_311/O
+                         net (fo=1, routed)           0.000     9.584    double_ctrl/p_0_out[6]
+    SLICE_X8Y1           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    10.117 r  double_ctrl/VGA_R_OBUF[3]_inst_i_297/CO[3]
+                         net (fo=1, routed)           0.000    10.117    double_ctrl/VGA_R_OBUF[3]_inst_i_297_n_0
+    SLICE_X8Y2           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    10.440 f  double_ctrl/VGA_R_OBUF[3]_inst_i_303/O[1]
+                         net (fo=1, routed)           0.640    11.080    double_ctrl/in_text_region6__0[10]
+    SLICE_X9Y1           LUT3 (Prop_lut3_I1_O)        0.306    11.386 r  double_ctrl/VGA_R_OBUF[3]_inst_i_299/O
+                         net (fo=1, routed)           0.000    11.386    double_ctrl/VGA_R_OBUF[3]_inst_i_299_n_0
+    SLICE_X9Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    11.787 r  double_ctrl/VGA_R_OBUF[3]_inst_i_265/CO[3]
+                         net (fo=1, routed)           0.000    11.787    double_ctrl/VGA_R_OBUF[3]_inst_i_265_n_0
+    SLICE_X9Y2           CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.009 r  double_ctrl/VGA_R_OBUF[3]_inst_i_252/O[0]
+                         net (fo=3, routed)           1.206    13.215    double_ctrl/VGA_R_OBUF[3]_inst_i_252_n_7
+    SLICE_X6Y1           LUT3 (Prop_lut3_I0_O)        0.299    13.514 r  double_ctrl/VGA_R_OBUF[3]_inst_i_293/O
+                         net (fo=1, routed)           0.000    13.514    double_ctrl/VGA_R_OBUF[3]_inst_i_293_n_0
+    SLICE_X6Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    13.890 r  double_ctrl/VGA_R_OBUF[3]_inst_i_263/CO[3]
+                         net (fo=1, routed)           0.000    13.890    double_ctrl/VGA_R_OBUF[3]_inst_i_263_n_0
+    SLICE_X6Y2           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.007 r  double_ctrl/VGA_R_OBUF[3]_inst_i_231/CO[3]
+                         net (fo=1, routed)           0.000    14.007    double_ctrl/VGA_R_OBUF[3]_inst_i_231_n_0
+    SLICE_X6Y3           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.124 r  double_ctrl/VGA_R_OBUF[3]_inst_i_230/CO[3]
+                         net (fo=1, routed)           0.000    14.124    double_ctrl/VGA_R_OBUF[3]_inst_i_230_n_0
+    SLICE_X6Y4           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.241 r  double_ctrl/VGA_R_OBUF[3]_inst_i_193/CO[3]
+                         net (fo=1, routed)           0.000    14.241    double_ctrl/VGA_R_OBUF[3]_inst_i_193_n_0
+    SLICE_X6Y5           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.358 r  double_ctrl/VGA_R_OBUF[3]_inst_i_192/CO[3]
+                         net (fo=1, routed)           0.000    14.358    double_ctrl/VGA_R_OBUF[3]_inst_i_192_n_0
+    SLICE_X6Y6           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.475 r  double_ctrl/VGA_R_OBUF[3]_inst_i_152/CO[3]
+                         net (fo=1, routed)           0.000    14.475    double_ctrl/VGA_R_OBUF[3]_inst_i_152_n_0
+    SLICE_X6Y7           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    14.798 r  double_ctrl/VGA_R_OBUF[3]_inst_i_151/O[1]
+                         net (fo=2, routed)           0.946    15.744    double_ctrl/VGA_R_OBUF[3]_inst_i_151_n_6
+    SLICE_X5Y5           LUT3 (Prop_lut3_I2_O)        0.306    16.050 r  double_ctrl/VGA_R_OBUF[3]_inst_i_108/O
+                         net (fo=1, routed)           0.000    16.050    double_ctrl/VGA_R_OBUF[3]_inst_i_108_n_0
+    SLICE_X5Y5           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    16.600 r  double_ctrl/VGA_R_OBUF[3]_inst_i_70/CO[3]
+                         net (fo=1, routed)           1.111    17.711    vga_gen/VGA_R_OBUF[3]_inst_i_14_0[0]
+    SLICE_X2Y5           LUT6 (Prop_lut6_I2_O)        0.124    17.835 r  vga_gen/VGA_R_OBUF[3]_inst_i_41/O
+                         net (fo=1, routed)           0.830    18.665    vga_gen/VGA_R_OBUF[3]_inst_i_41_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I3_O)        0.124    18.789 f  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
+                         net (fo=1, routed)           0.466    19.255    vga_gen/VGA_R_OBUF[3]_inst_i_14_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I1_O)        0.124    19.379 f  vga_gen/VGA_R_OBUF[3]_inst_i_4/O
+                         net (fo=3, routed)           0.972    20.350    vga_gen/v_count_reg[8]_0
+    SLICE_X3Y10          LUT6 (Prop_lut6_I5_O)        0.124    20.474 r  vga_gen/VGA_G_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           2.994    23.468    VGA_G_OBUF[0]
+    H17                  OBUF (Prop_obuf_I_O)         3.505    26.974 r  VGA_G_OBUF[1]_inst/O
+                         net (fo=0)                   0.000    26.974    VGA_G[1]
+    H17                                                               r  VGA_G[1] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga_gen/v_count_reg[5]/C
                             (rising edge-triggered cell FDCE)
   Destination:            VGA_R[2]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        19.835ns  (logic 8.881ns (44.774%)  route 10.954ns (55.226%))
-  Logic Levels:           17  (CARRY4=7 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=4 OBUF=1)
+  Data Path Delay:        26.951ns  (logic 12.789ns (47.452%)  route 14.162ns (52.548%))
+  Logic Levels:           24  (CARRY4=12 DSP48E1=1 FDCE=1 LUT1=1 LUT3=3 LUT6=5 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X7Y30          FDCE                         0.000     0.000 r  vga_gen/v_count_reg[3]/C
-    SLICE_X7Y30          FDCE (Prop_fdce_C_Q)         0.419     0.419 r  vga_gen/v_count_reg[3]/Q
-                         net (fo=14, routed)          0.871     1.290    vga_gen/py[3]
-    SLICE_X5Y30          LUT2 (Prop_lut2_I0_O)        0.299     1.589 r  vga_gen/VGA_R_OBUF[3]_inst_i_67/O
-                         net (fo=1, routed)           0.000     1.589    vga_gen/VGA_R_OBUF[3]_inst_i_67_n_0
-    SLICE_X5Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550     2.139 r  vga_gen/VGA_R_OBUF[3]_inst_i_47/CO[3]
-                         net (fo=1, routed)           0.000     2.139    vga_gen/VGA_R_OBUF[3]_inst_i_47_n_0
-    SLICE_X5Y31          CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     2.452 r  vga_gen/VGA_R_OBUF[3]_inst_i_39/O[3]
-                         net (fo=7, routed)           1.042     3.494    vga_gen/VGA_R_OBUF[3]_inst_i_39_n_4
-    SLICE_X4Y30          LUT3 (Prop_lut3_I0_O)        0.336     3.830 r  vga_gen/VGA_R_OBUF[3]_inst_i_69/O
-                         net (fo=2, routed)           0.811     4.641    vga_gen/VGA_R_OBUF[3]_inst_i_69_n_0
-    SLICE_X4Y30          LUT5 (Prop_lut5_I0_O)        0.327     4.968 r  vga_gen/VGA_R_OBUF[3]_inst_i_72/O
-                         net (fo=1, routed)           0.000     4.968    vga_gen/VGA_R_OBUF[3]_inst_i_72_n_0
-    SLICE_X4Y30          CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     5.369 r  vga_gen/VGA_R_OBUF[3]_inst_i_52/CO[3]
-                         net (fo=1, routed)           0.000     5.369    vga_gen/VGA_R_OBUF[3]_inst_i_52_n_0
-    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271     5.640 r  vga_gen/VGA_R_OBUF[3]_inst_i_40/CO[0]
-                         net (fo=2, routed)           0.650     6.290    vga_gen/VGA_R_OBUF[3]_inst_i_40_n_3
-    SLICE_X4Y32          LUT4 (Prop_lut4_I3_O)        0.399     6.689 r  vga_gen/VGA_R_OBUF[3]_inst_i_35/O
-                         net (fo=5, routed)           1.026     7.715    vga_gen/VGA_R_OBUF[3]_inst_i_35_n_0
-    SLICE_X2Y31          LUT6 (Prop_lut6_I1_O)        0.326     8.041 r  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
-                         net (fo=1, routed)           0.660     8.701    vga_gen/symbol_id3[1]
-    SLICE_X3Y31          CARRY4 (Prop_carry4_DI[3]_CO[3])
-                                                      0.385     9.086 r  vga_gen/VGA_R_OBUF[3]_inst_i_4/CO[3]
-                         net (fo=1, routed)           0.000     9.086    vga_gen/VGA_R_OBUF[3]_inst_i_4_n_0
-    SLICE_X3Y32          CARRY4 (Prop_carry4_CI_O[0])
-                                                      0.222     9.308 r  vga_gen/VGA_R_OBUF[3]_inst_i_31/O[0]
-                         net (fo=1, routed)           0.798    10.106    vga_gen/symbol_id2[4]
-    SLICE_X2Y28          CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.554    10.660 r  vga_gen/VGA_R_OBUF[3]_inst_i_11/O[3]
-                         net (fo=10, routed)          1.047    11.707    rand_mat/VGA_R_OBUF[3]_inst_i_5_0[3]
-    SLICE_X2Y26          LUT6 (Prop_lut6_I4_O)        0.307    12.014 r  rand_mat/VGA_R_OBUF[3]_inst_i_13/O
-                         net (fo=1, routed)           0.796    12.810    rand_mat/VGA_R_OBUF[3]_inst_i_13_n_0
-    SLICE_X2Y26          LUT6 (Prop_lut6_I5_O)        0.124    12.934 r  rand_mat/VGA_R_OBUF[3]_inst_i_3/O
-                         net (fo=3, routed)           1.158    14.092    rand_mat/VGA_R_OBUF[3]_inst_i_3_n_0
-    SLICE_X0Y28          LUT6 (Prop_lut6_I1_O)        0.124    14.216 r  rand_mat/VGA_R_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.095    16.311    VGA_R_OBUF[0]
-    J19                  OBUF (Prop_obuf_I_O)         3.524    19.835 r  VGA_R_OBUF[2]_inst/O
-                         net (fo=0)                   0.000    19.835    VGA_R[2]
+    SLICE_X3Y2           FDCE                         0.000     0.000 r  vga_gen/v_count_reg[5]/C
+    SLICE_X3Y2           FDCE (Prop_fdce_C_Q)         0.456     0.456 f  vga_gen/v_count_reg[5]/Q
+                         net (fo=30, routed)          2.377     2.833    vga_gen/py[5]
+    SLICE_X5Y6           LUT6 (Prop_lut6_I1_O)        0.124     2.957 r  vga_gen/in_text_region6_i_1/O
+                         net (fo=21, routed)          1.497     4.454    double_ctrl/A[10]
+    DSP48_X0Y0           DSP48E1 (Prop_dsp48e1_A[21]_P[6])
+                                                      3.841     8.295 f  double_ctrl/in_text_region6/P[6]
+                         net (fo=3, routed)           1.165     9.460    double_ctrl/in_text_region6_n_99
+    SLICE_X8Y1           LUT1 (Prop_lut1_I0_O)        0.124     9.584 r  double_ctrl/VGA_R_OBUF[3]_inst_i_311/O
+                         net (fo=1, routed)           0.000     9.584    double_ctrl/p_0_out[6]
+    SLICE_X8Y1           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    10.117 r  double_ctrl/VGA_R_OBUF[3]_inst_i_297/CO[3]
+                         net (fo=1, routed)           0.000    10.117    double_ctrl/VGA_R_OBUF[3]_inst_i_297_n_0
+    SLICE_X8Y2           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    10.440 f  double_ctrl/VGA_R_OBUF[3]_inst_i_303/O[1]
+                         net (fo=1, routed)           0.640    11.080    double_ctrl/in_text_region6__0[10]
+    SLICE_X9Y1           LUT3 (Prop_lut3_I1_O)        0.306    11.386 r  double_ctrl/VGA_R_OBUF[3]_inst_i_299/O
+                         net (fo=1, routed)           0.000    11.386    double_ctrl/VGA_R_OBUF[3]_inst_i_299_n_0
+    SLICE_X9Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    11.787 r  double_ctrl/VGA_R_OBUF[3]_inst_i_265/CO[3]
+                         net (fo=1, routed)           0.000    11.787    double_ctrl/VGA_R_OBUF[3]_inst_i_265_n_0
+    SLICE_X9Y2           CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.009 r  double_ctrl/VGA_R_OBUF[3]_inst_i_252/O[0]
+                         net (fo=3, routed)           1.206    13.215    double_ctrl/VGA_R_OBUF[3]_inst_i_252_n_7
+    SLICE_X6Y1           LUT3 (Prop_lut3_I0_O)        0.299    13.514 r  double_ctrl/VGA_R_OBUF[3]_inst_i_293/O
+                         net (fo=1, routed)           0.000    13.514    double_ctrl/VGA_R_OBUF[3]_inst_i_293_n_0
+    SLICE_X6Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    13.890 r  double_ctrl/VGA_R_OBUF[3]_inst_i_263/CO[3]
+                         net (fo=1, routed)           0.000    13.890    double_ctrl/VGA_R_OBUF[3]_inst_i_263_n_0
+    SLICE_X6Y2           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.007 r  double_ctrl/VGA_R_OBUF[3]_inst_i_231/CO[3]
+                         net (fo=1, routed)           0.000    14.007    double_ctrl/VGA_R_OBUF[3]_inst_i_231_n_0
+    SLICE_X6Y3           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.124 r  double_ctrl/VGA_R_OBUF[3]_inst_i_230/CO[3]
+                         net (fo=1, routed)           0.000    14.124    double_ctrl/VGA_R_OBUF[3]_inst_i_230_n_0
+    SLICE_X6Y4           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.241 r  double_ctrl/VGA_R_OBUF[3]_inst_i_193/CO[3]
+                         net (fo=1, routed)           0.000    14.241    double_ctrl/VGA_R_OBUF[3]_inst_i_193_n_0
+    SLICE_X6Y5           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.358 r  double_ctrl/VGA_R_OBUF[3]_inst_i_192/CO[3]
+                         net (fo=1, routed)           0.000    14.358    double_ctrl/VGA_R_OBUF[3]_inst_i_192_n_0
+    SLICE_X6Y6           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.475 r  double_ctrl/VGA_R_OBUF[3]_inst_i_152/CO[3]
+                         net (fo=1, routed)           0.000    14.475    double_ctrl/VGA_R_OBUF[3]_inst_i_152_n_0
+    SLICE_X6Y7           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    14.798 r  double_ctrl/VGA_R_OBUF[3]_inst_i_151/O[1]
+                         net (fo=2, routed)           0.946    15.744    double_ctrl/VGA_R_OBUF[3]_inst_i_151_n_6
+    SLICE_X5Y5           LUT3 (Prop_lut3_I2_O)        0.306    16.050 r  double_ctrl/VGA_R_OBUF[3]_inst_i_108/O
+                         net (fo=1, routed)           0.000    16.050    double_ctrl/VGA_R_OBUF[3]_inst_i_108_n_0
+    SLICE_X5Y5           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    16.600 r  double_ctrl/VGA_R_OBUF[3]_inst_i_70/CO[3]
+                         net (fo=1, routed)           1.111    17.711    vga_gen/VGA_R_OBUF[3]_inst_i_14_0[0]
+    SLICE_X2Y5           LUT6 (Prop_lut6_I2_O)        0.124    17.835 r  vga_gen/VGA_R_OBUF[3]_inst_i_41/O
+                         net (fo=1, routed)           0.830    18.665    vga_gen/VGA_R_OBUF[3]_inst_i_41_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I3_O)        0.124    18.789 f  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
+                         net (fo=1, routed)           0.466    19.255    vga_gen/VGA_R_OBUF[3]_inst_i_14_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I1_O)        0.124    19.379 f  vga_gen/VGA_R_OBUF[3]_inst_i_4/O
+                         net (fo=3, routed)           1.147    20.526    double_ctrl/VGA_R[0]_0
+    SLICE_X2Y10          LUT6 (Prop_lut6_I2_O)        0.124    20.650 r  double_ctrl/VGA_R_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           2.778    23.427    VGA_R_OBUF[0]
+    J19                  OBUF (Prop_obuf_I_O)         3.524    26.951 r  VGA_R_OBUF[2]_inst/O
+                         net (fo=0)                   0.000    26.951    VGA_R[2]
     J19                                                               r  VGA_R[2] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 vga_gen/v_count_reg[3]/C
+  Source:                 vga_gen/v_count_reg[5]/C
                             (rising edge-triggered cell FDCE)
   Destination:            VGA_G[2]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        19.725ns  (logic 8.886ns (45.050%)  route 10.839ns (54.950%))
-  Logic Levels:           17  (CARRY4=7 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=4 OBUF=1)
+  Data Path Delay:        26.847ns  (logic 12.794ns (47.656%)  route 14.052ns (52.344%))
+  Logic Levels:           24  (CARRY4=12 DSP48E1=1 FDCE=1 LUT1=1 LUT3=3 LUT6=5 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X7Y30          FDCE                         0.000     0.000 r  vga_gen/v_count_reg[3]/C
-    SLICE_X7Y30          FDCE (Prop_fdce_C_Q)         0.419     0.419 r  vga_gen/v_count_reg[3]/Q
-                         net (fo=14, routed)          0.871     1.290    vga_gen/py[3]
-    SLICE_X5Y30          LUT2 (Prop_lut2_I0_O)        0.299     1.589 r  vga_gen/VGA_R_OBUF[3]_inst_i_67/O
-                         net (fo=1, routed)           0.000     1.589    vga_gen/VGA_R_OBUF[3]_inst_i_67_n_0
-    SLICE_X5Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550     2.139 r  vga_gen/VGA_R_OBUF[3]_inst_i_47/CO[3]
-                         net (fo=1, routed)           0.000     2.139    vga_gen/VGA_R_OBUF[3]_inst_i_47_n_0
-    SLICE_X5Y31          CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     2.452 r  vga_gen/VGA_R_OBUF[3]_inst_i_39/O[3]
-                         net (fo=7, routed)           1.042     3.494    vga_gen/VGA_R_OBUF[3]_inst_i_39_n_4
-    SLICE_X4Y30          LUT3 (Prop_lut3_I0_O)        0.336     3.830 r  vga_gen/VGA_R_OBUF[3]_inst_i_69/O
-                         net (fo=2, routed)           0.811     4.641    vga_gen/VGA_R_OBUF[3]_inst_i_69_n_0
-    SLICE_X4Y30          LUT5 (Prop_lut5_I0_O)        0.327     4.968 r  vga_gen/VGA_R_OBUF[3]_inst_i_72/O
-                         net (fo=1, routed)           0.000     4.968    vga_gen/VGA_R_OBUF[3]_inst_i_72_n_0
-    SLICE_X4Y30          CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     5.369 r  vga_gen/VGA_R_OBUF[3]_inst_i_52/CO[3]
-                         net (fo=1, routed)           0.000     5.369    vga_gen/VGA_R_OBUF[3]_inst_i_52_n_0
-    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271     5.640 r  vga_gen/VGA_R_OBUF[3]_inst_i_40/CO[0]
-                         net (fo=2, routed)           0.650     6.290    vga_gen/VGA_R_OBUF[3]_inst_i_40_n_3
-    SLICE_X4Y32          LUT4 (Prop_lut4_I3_O)        0.399     6.689 r  vga_gen/VGA_R_OBUF[3]_inst_i_35/O
-                         net (fo=5, routed)           1.026     7.715    vga_gen/VGA_R_OBUF[3]_inst_i_35_n_0
-    SLICE_X2Y31          LUT6 (Prop_lut6_I1_O)        0.326     8.041 r  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
-                         net (fo=1, routed)           0.660     8.701    vga_gen/symbol_id3[1]
-    SLICE_X3Y31          CARRY4 (Prop_carry4_DI[3]_CO[3])
-                                                      0.385     9.086 r  vga_gen/VGA_R_OBUF[3]_inst_i_4/CO[3]
-                         net (fo=1, routed)           0.000     9.086    vga_gen/VGA_R_OBUF[3]_inst_i_4_n_0
-    SLICE_X3Y32          CARRY4 (Prop_carry4_CI_O[0])
-                                                      0.222     9.308 r  vga_gen/VGA_R_OBUF[3]_inst_i_31/O[0]
-                         net (fo=1, routed)           0.798    10.106    vga_gen/symbol_id2[4]
-    SLICE_X2Y28          CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.554    10.660 r  vga_gen/VGA_R_OBUF[3]_inst_i_11/O[3]
-                         net (fo=10, routed)          1.047    11.707    rand_mat/VGA_R_OBUF[3]_inst_i_5_0[3]
-    SLICE_X2Y26          LUT6 (Prop_lut6_I4_O)        0.307    12.014 r  rand_mat/VGA_R_OBUF[3]_inst_i_13/O
-                         net (fo=1, routed)           0.796    12.810    rand_mat/VGA_R_OBUF[3]_inst_i_13_n_0
-    SLICE_X2Y26          LUT6 (Prop_lut6_I5_O)        0.124    12.934 r  rand_mat/VGA_R_OBUF[3]_inst_i_3/O
-                         net (fo=3, routed)           0.964    13.898    rand_mat/VGA_R_OBUF[3]_inst_i_3_n_0
-    SLICE_X0Y28          LUT6 (Prop_lut6_I4_O)        0.124    14.022 r  rand_mat/VGA_G_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.174    16.196    VGA_G_OBUF[0]
-    G17                  OBUF (Prop_obuf_I_O)         3.529    19.725 r  VGA_G_OBUF[2]_inst/O
-                         net (fo=0)                   0.000    19.725    VGA_G[2]
+    SLICE_X3Y2           FDCE                         0.000     0.000 r  vga_gen/v_count_reg[5]/C
+    SLICE_X3Y2           FDCE (Prop_fdce_C_Q)         0.456     0.456 f  vga_gen/v_count_reg[5]/Q
+                         net (fo=30, routed)          2.377     2.833    vga_gen/py[5]
+    SLICE_X5Y6           LUT6 (Prop_lut6_I1_O)        0.124     2.957 r  vga_gen/in_text_region6_i_1/O
+                         net (fo=21, routed)          1.497     4.454    double_ctrl/A[10]
+    DSP48_X0Y0           DSP48E1 (Prop_dsp48e1_A[21]_P[6])
+                                                      3.841     8.295 f  double_ctrl/in_text_region6/P[6]
+                         net (fo=3, routed)           1.165     9.460    double_ctrl/in_text_region6_n_99
+    SLICE_X8Y1           LUT1 (Prop_lut1_I0_O)        0.124     9.584 r  double_ctrl/VGA_R_OBUF[3]_inst_i_311/O
+                         net (fo=1, routed)           0.000     9.584    double_ctrl/p_0_out[6]
+    SLICE_X8Y1           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    10.117 r  double_ctrl/VGA_R_OBUF[3]_inst_i_297/CO[3]
+                         net (fo=1, routed)           0.000    10.117    double_ctrl/VGA_R_OBUF[3]_inst_i_297_n_0
+    SLICE_X8Y2           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    10.440 f  double_ctrl/VGA_R_OBUF[3]_inst_i_303/O[1]
+                         net (fo=1, routed)           0.640    11.080    double_ctrl/in_text_region6__0[10]
+    SLICE_X9Y1           LUT3 (Prop_lut3_I1_O)        0.306    11.386 r  double_ctrl/VGA_R_OBUF[3]_inst_i_299/O
+                         net (fo=1, routed)           0.000    11.386    double_ctrl/VGA_R_OBUF[3]_inst_i_299_n_0
+    SLICE_X9Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    11.787 r  double_ctrl/VGA_R_OBUF[3]_inst_i_265/CO[3]
+                         net (fo=1, routed)           0.000    11.787    double_ctrl/VGA_R_OBUF[3]_inst_i_265_n_0
+    SLICE_X9Y2           CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.009 r  double_ctrl/VGA_R_OBUF[3]_inst_i_252/O[0]
+                         net (fo=3, routed)           1.206    13.215    double_ctrl/VGA_R_OBUF[3]_inst_i_252_n_7
+    SLICE_X6Y1           LUT3 (Prop_lut3_I0_O)        0.299    13.514 r  double_ctrl/VGA_R_OBUF[3]_inst_i_293/O
+                         net (fo=1, routed)           0.000    13.514    double_ctrl/VGA_R_OBUF[3]_inst_i_293_n_0
+    SLICE_X6Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    13.890 r  double_ctrl/VGA_R_OBUF[3]_inst_i_263/CO[3]
+                         net (fo=1, routed)           0.000    13.890    double_ctrl/VGA_R_OBUF[3]_inst_i_263_n_0
+    SLICE_X6Y2           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.007 r  double_ctrl/VGA_R_OBUF[3]_inst_i_231/CO[3]
+                         net (fo=1, routed)           0.000    14.007    double_ctrl/VGA_R_OBUF[3]_inst_i_231_n_0
+    SLICE_X6Y3           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.124 r  double_ctrl/VGA_R_OBUF[3]_inst_i_230/CO[3]
+                         net (fo=1, routed)           0.000    14.124    double_ctrl/VGA_R_OBUF[3]_inst_i_230_n_0
+    SLICE_X6Y4           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.241 r  double_ctrl/VGA_R_OBUF[3]_inst_i_193/CO[3]
+                         net (fo=1, routed)           0.000    14.241    double_ctrl/VGA_R_OBUF[3]_inst_i_193_n_0
+    SLICE_X6Y5           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.358 r  double_ctrl/VGA_R_OBUF[3]_inst_i_192/CO[3]
+                         net (fo=1, routed)           0.000    14.358    double_ctrl/VGA_R_OBUF[3]_inst_i_192_n_0
+    SLICE_X6Y6           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.475 r  double_ctrl/VGA_R_OBUF[3]_inst_i_152/CO[3]
+                         net (fo=1, routed)           0.000    14.475    double_ctrl/VGA_R_OBUF[3]_inst_i_152_n_0
+    SLICE_X6Y7           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    14.798 r  double_ctrl/VGA_R_OBUF[3]_inst_i_151/O[1]
+                         net (fo=2, routed)           0.946    15.744    double_ctrl/VGA_R_OBUF[3]_inst_i_151_n_6
+    SLICE_X5Y5           LUT3 (Prop_lut3_I2_O)        0.306    16.050 r  double_ctrl/VGA_R_OBUF[3]_inst_i_108/O
+                         net (fo=1, routed)           0.000    16.050    double_ctrl/VGA_R_OBUF[3]_inst_i_108_n_0
+    SLICE_X5Y5           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    16.600 r  double_ctrl/VGA_R_OBUF[3]_inst_i_70/CO[3]
+                         net (fo=1, routed)           1.111    17.711    vga_gen/VGA_R_OBUF[3]_inst_i_14_0[0]
+    SLICE_X2Y5           LUT6 (Prop_lut6_I2_O)        0.124    17.835 r  vga_gen/VGA_R_OBUF[3]_inst_i_41/O
+                         net (fo=1, routed)           0.830    18.665    vga_gen/VGA_R_OBUF[3]_inst_i_41_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I3_O)        0.124    18.789 f  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
+                         net (fo=1, routed)           0.466    19.255    vga_gen/VGA_R_OBUF[3]_inst_i_14_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I1_O)        0.124    19.379 f  vga_gen/VGA_R_OBUF[3]_inst_i_4/O
+                         net (fo=3, routed)           0.972    20.350    vga_gen/v_count_reg[8]_0
+    SLICE_X3Y10          LUT6 (Prop_lut6_I5_O)        0.124    20.474 r  vga_gen/VGA_G_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           2.843    23.317    VGA_G_OBUF[0]
+    G17                  OBUF (Prop_obuf_I_O)         3.529    26.847 r  VGA_G_OBUF[2]_inst/O
+                         net (fo=0)                   0.000    26.847    VGA_G[2]
     G17                                                               r  VGA_G[2] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 vga_gen/v_count_reg[3]/C
+  Source:                 vga_gen/v_count_reg[5]/C
                             (rising edge-triggered cell FDCE)
   Destination:            VGA_B[3]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        19.706ns  (logic 8.882ns (45.070%)  route 10.825ns (54.930%))
-  Logic Levels:           17  (CARRY4=7 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=4 OBUF=1)
+  Data Path Delay:        26.782ns  (logic 12.790ns (47.756%)  route 13.992ns (52.244%))
+  Logic Levels:           24  (CARRY4=12 DSP48E1=1 FDCE=1 LUT1=1 LUT3=3 LUT6=5 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X7Y30          FDCE                         0.000     0.000 r  vga_gen/v_count_reg[3]/C
-    SLICE_X7Y30          FDCE (Prop_fdce_C_Q)         0.419     0.419 r  vga_gen/v_count_reg[3]/Q
-                         net (fo=14, routed)          0.871     1.290    vga_gen/py[3]
-    SLICE_X5Y30          LUT2 (Prop_lut2_I0_O)        0.299     1.589 r  vga_gen/VGA_R_OBUF[3]_inst_i_67/O
-                         net (fo=1, routed)           0.000     1.589    vga_gen/VGA_R_OBUF[3]_inst_i_67_n_0
-    SLICE_X5Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550     2.139 r  vga_gen/VGA_R_OBUF[3]_inst_i_47/CO[3]
-                         net (fo=1, routed)           0.000     2.139    vga_gen/VGA_R_OBUF[3]_inst_i_47_n_0
-    SLICE_X5Y31          CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     2.452 r  vga_gen/VGA_R_OBUF[3]_inst_i_39/O[3]
-                         net (fo=7, routed)           1.042     3.494    vga_gen/VGA_R_OBUF[3]_inst_i_39_n_4
-    SLICE_X4Y30          LUT3 (Prop_lut3_I0_O)        0.336     3.830 r  vga_gen/VGA_R_OBUF[3]_inst_i_69/O
-                         net (fo=2, routed)           0.811     4.641    vga_gen/VGA_R_OBUF[3]_inst_i_69_n_0
-    SLICE_X4Y30          LUT5 (Prop_lut5_I0_O)        0.327     4.968 r  vga_gen/VGA_R_OBUF[3]_inst_i_72/O
-                         net (fo=1, routed)           0.000     4.968    vga_gen/VGA_R_OBUF[3]_inst_i_72_n_0
-    SLICE_X4Y30          CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     5.369 r  vga_gen/VGA_R_OBUF[3]_inst_i_52/CO[3]
-                         net (fo=1, routed)           0.000     5.369    vga_gen/VGA_R_OBUF[3]_inst_i_52_n_0
-    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271     5.640 r  vga_gen/VGA_R_OBUF[3]_inst_i_40/CO[0]
-                         net (fo=2, routed)           0.650     6.290    vga_gen/VGA_R_OBUF[3]_inst_i_40_n_3
-    SLICE_X4Y32          LUT4 (Prop_lut4_I3_O)        0.399     6.689 r  vga_gen/VGA_R_OBUF[3]_inst_i_35/O
-                         net (fo=5, routed)           1.026     7.715    vga_gen/VGA_R_OBUF[3]_inst_i_35_n_0
-    SLICE_X2Y31          LUT6 (Prop_lut6_I1_O)        0.326     8.041 r  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
-                         net (fo=1, routed)           0.660     8.701    vga_gen/symbol_id3[1]
-    SLICE_X3Y31          CARRY4 (Prop_carry4_DI[3]_CO[3])
-                                                      0.385     9.086 r  vga_gen/VGA_R_OBUF[3]_inst_i_4/CO[3]
-                         net (fo=1, routed)           0.000     9.086    vga_gen/VGA_R_OBUF[3]_inst_i_4_n_0
-    SLICE_X3Y32          CARRY4 (Prop_carry4_CI_O[0])
-                                                      0.222     9.308 r  vga_gen/VGA_R_OBUF[3]_inst_i_31/O[0]
-                         net (fo=1, routed)           0.798    10.106    vga_gen/symbol_id2[4]
-    SLICE_X2Y28          CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.554    10.660 r  vga_gen/VGA_R_OBUF[3]_inst_i_11/O[3]
-                         net (fo=10, routed)          1.047    11.707    rand_mat/VGA_R_OBUF[3]_inst_i_5_0[3]
-    SLICE_X2Y26          LUT6 (Prop_lut6_I4_O)        0.307    12.014 f  rand_mat/VGA_R_OBUF[3]_inst_i_13/O
-                         net (fo=1, routed)           0.796    12.810    rand_mat/VGA_R_OBUF[3]_inst_i_13_n_0
-    SLICE_X2Y26          LUT6 (Prop_lut6_I5_O)        0.124    12.934 f  rand_mat/VGA_R_OBUF[3]_inst_i_3/O
-                         net (fo=3, routed)           0.961    13.895    rand_mat/VGA_R_OBUF[3]_inst_i_3_n_0
-    SLICE_X0Y28          LUT6 (Prop_lut6_I5_O)        0.124    14.019 r  rand_mat/VGA_B_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.162    16.182    VGA_B_OBUF[0]
-    J18                  OBUF (Prop_obuf_I_O)         3.525    19.706 r  VGA_B_OBUF[3]_inst/O
-                         net (fo=0)                   0.000    19.706    VGA_B[3]
+    SLICE_X3Y2           FDCE                         0.000     0.000 r  vga_gen/v_count_reg[5]/C
+    SLICE_X3Y2           FDCE (Prop_fdce_C_Q)         0.456     0.456 f  vga_gen/v_count_reg[5]/Q
+                         net (fo=30, routed)          2.377     2.833    vga_gen/py[5]
+    SLICE_X5Y6           LUT6 (Prop_lut6_I1_O)        0.124     2.957 r  vga_gen/in_text_region6_i_1/O
+                         net (fo=21, routed)          1.497     4.454    double_ctrl/A[10]
+    DSP48_X0Y0           DSP48E1 (Prop_dsp48e1_A[21]_P[6])
+                                                      3.841     8.295 f  double_ctrl/in_text_region6/P[6]
+                         net (fo=3, routed)           1.165     9.460    double_ctrl/in_text_region6_n_99
+    SLICE_X8Y1           LUT1 (Prop_lut1_I0_O)        0.124     9.584 r  double_ctrl/VGA_R_OBUF[3]_inst_i_311/O
+                         net (fo=1, routed)           0.000     9.584    double_ctrl/p_0_out[6]
+    SLICE_X8Y1           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    10.117 r  double_ctrl/VGA_R_OBUF[3]_inst_i_297/CO[3]
+                         net (fo=1, routed)           0.000    10.117    double_ctrl/VGA_R_OBUF[3]_inst_i_297_n_0
+    SLICE_X8Y2           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    10.440 f  double_ctrl/VGA_R_OBUF[3]_inst_i_303/O[1]
+                         net (fo=1, routed)           0.640    11.080    double_ctrl/in_text_region6__0[10]
+    SLICE_X9Y1           LUT3 (Prop_lut3_I1_O)        0.306    11.386 r  double_ctrl/VGA_R_OBUF[3]_inst_i_299/O
+                         net (fo=1, routed)           0.000    11.386    double_ctrl/VGA_R_OBUF[3]_inst_i_299_n_0
+    SLICE_X9Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    11.787 r  double_ctrl/VGA_R_OBUF[3]_inst_i_265/CO[3]
+                         net (fo=1, routed)           0.000    11.787    double_ctrl/VGA_R_OBUF[3]_inst_i_265_n_0
+    SLICE_X9Y2           CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.009 r  double_ctrl/VGA_R_OBUF[3]_inst_i_252/O[0]
+                         net (fo=3, routed)           1.206    13.215    double_ctrl/VGA_R_OBUF[3]_inst_i_252_n_7
+    SLICE_X6Y1           LUT3 (Prop_lut3_I0_O)        0.299    13.514 r  double_ctrl/VGA_R_OBUF[3]_inst_i_293/O
+                         net (fo=1, routed)           0.000    13.514    double_ctrl/VGA_R_OBUF[3]_inst_i_293_n_0
+    SLICE_X6Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    13.890 r  double_ctrl/VGA_R_OBUF[3]_inst_i_263/CO[3]
+                         net (fo=1, routed)           0.000    13.890    double_ctrl/VGA_R_OBUF[3]_inst_i_263_n_0
+    SLICE_X6Y2           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.007 r  double_ctrl/VGA_R_OBUF[3]_inst_i_231/CO[3]
+                         net (fo=1, routed)           0.000    14.007    double_ctrl/VGA_R_OBUF[3]_inst_i_231_n_0
+    SLICE_X6Y3           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.124 r  double_ctrl/VGA_R_OBUF[3]_inst_i_230/CO[3]
+                         net (fo=1, routed)           0.000    14.124    double_ctrl/VGA_R_OBUF[3]_inst_i_230_n_0
+    SLICE_X6Y4           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.241 r  double_ctrl/VGA_R_OBUF[3]_inst_i_193/CO[3]
+                         net (fo=1, routed)           0.000    14.241    double_ctrl/VGA_R_OBUF[3]_inst_i_193_n_0
+    SLICE_X6Y5           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.358 r  double_ctrl/VGA_R_OBUF[3]_inst_i_192/CO[3]
+                         net (fo=1, routed)           0.000    14.358    double_ctrl/VGA_R_OBUF[3]_inst_i_192_n_0
+    SLICE_X6Y6           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.475 r  double_ctrl/VGA_R_OBUF[3]_inst_i_152/CO[3]
+                         net (fo=1, routed)           0.000    14.475    double_ctrl/VGA_R_OBUF[3]_inst_i_152_n_0
+    SLICE_X6Y7           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    14.798 r  double_ctrl/VGA_R_OBUF[3]_inst_i_151/O[1]
+                         net (fo=2, routed)           0.946    15.744    double_ctrl/VGA_R_OBUF[3]_inst_i_151_n_6
+    SLICE_X5Y5           LUT3 (Prop_lut3_I2_O)        0.306    16.050 r  double_ctrl/VGA_R_OBUF[3]_inst_i_108/O
+                         net (fo=1, routed)           0.000    16.050    double_ctrl/VGA_R_OBUF[3]_inst_i_108_n_0
+    SLICE_X5Y5           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    16.600 r  double_ctrl/VGA_R_OBUF[3]_inst_i_70/CO[3]
+                         net (fo=1, routed)           1.111    17.711    vga_gen/VGA_R_OBUF[3]_inst_i_14_0[0]
+    SLICE_X2Y5           LUT6 (Prop_lut6_I2_O)        0.124    17.835 r  vga_gen/VGA_R_OBUF[3]_inst_i_41/O
+                         net (fo=1, routed)           0.830    18.665    vga_gen/VGA_R_OBUF[3]_inst_i_41_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I3_O)        0.124    18.789 f  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
+                         net (fo=1, routed)           0.466    19.255    vga_gen/VGA_R_OBUF[3]_inst_i_14_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I1_O)        0.124    19.379 f  vga_gen/VGA_R_OBUF[3]_inst_i_4/O
+                         net (fo=3, routed)           0.970    20.348    rand_mat/VGA_B[0]_0
+    SLICE_X3Y10          LUT6 (Prop_lut6_I2_O)        0.124    20.472 r  rand_mat/VGA_B_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           2.785    23.257    VGA_B_OBUF[0]
+    J18                  OBUF (Prop_obuf_I_O)         3.525    26.782 r  VGA_B_OBUF[3]_inst/O
+                         net (fo=0)                   0.000    26.782    VGA_B[3]
     J18                                                               r  VGA_B[3] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 vga_gen/v_count_reg[3]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            VGA_B[1]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        19.544ns  (logic 8.860ns (45.335%)  route 10.684ns (54.665%))
-  Logic Levels:           17  (CARRY4=7 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=4 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y30          FDCE                         0.000     0.000 r  vga_gen/v_count_reg[3]/C
-    SLICE_X7Y30          FDCE (Prop_fdce_C_Q)         0.419     0.419 r  vga_gen/v_count_reg[3]/Q
-                         net (fo=14, routed)          0.871     1.290    vga_gen/py[3]
-    SLICE_X5Y30          LUT2 (Prop_lut2_I0_O)        0.299     1.589 r  vga_gen/VGA_R_OBUF[3]_inst_i_67/O
-                         net (fo=1, routed)           0.000     1.589    vga_gen/VGA_R_OBUF[3]_inst_i_67_n_0
-    SLICE_X5Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550     2.139 r  vga_gen/VGA_R_OBUF[3]_inst_i_47/CO[3]
-                         net (fo=1, routed)           0.000     2.139    vga_gen/VGA_R_OBUF[3]_inst_i_47_n_0
-    SLICE_X5Y31          CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     2.452 r  vga_gen/VGA_R_OBUF[3]_inst_i_39/O[3]
-                         net (fo=7, routed)           1.042     3.494    vga_gen/VGA_R_OBUF[3]_inst_i_39_n_4
-    SLICE_X4Y30          LUT3 (Prop_lut3_I0_O)        0.336     3.830 r  vga_gen/VGA_R_OBUF[3]_inst_i_69/O
-                         net (fo=2, routed)           0.811     4.641    vga_gen/VGA_R_OBUF[3]_inst_i_69_n_0
-    SLICE_X4Y30          LUT5 (Prop_lut5_I0_O)        0.327     4.968 r  vga_gen/VGA_R_OBUF[3]_inst_i_72/O
-                         net (fo=1, routed)           0.000     4.968    vga_gen/VGA_R_OBUF[3]_inst_i_72_n_0
-    SLICE_X4Y30          CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     5.369 r  vga_gen/VGA_R_OBUF[3]_inst_i_52/CO[3]
-                         net (fo=1, routed)           0.000     5.369    vga_gen/VGA_R_OBUF[3]_inst_i_52_n_0
-    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271     5.640 r  vga_gen/VGA_R_OBUF[3]_inst_i_40/CO[0]
-                         net (fo=2, routed)           0.650     6.290    vga_gen/VGA_R_OBUF[3]_inst_i_40_n_3
-    SLICE_X4Y32          LUT4 (Prop_lut4_I3_O)        0.399     6.689 r  vga_gen/VGA_R_OBUF[3]_inst_i_35/O
-                         net (fo=5, routed)           1.026     7.715    vga_gen/VGA_R_OBUF[3]_inst_i_35_n_0
-    SLICE_X2Y31          LUT6 (Prop_lut6_I1_O)        0.326     8.041 r  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
-                         net (fo=1, routed)           0.660     8.701    vga_gen/symbol_id3[1]
-    SLICE_X3Y31          CARRY4 (Prop_carry4_DI[3]_CO[3])
-                                                      0.385     9.086 r  vga_gen/VGA_R_OBUF[3]_inst_i_4/CO[3]
-                         net (fo=1, routed)           0.000     9.086    vga_gen/VGA_R_OBUF[3]_inst_i_4_n_0
-    SLICE_X3Y32          CARRY4 (Prop_carry4_CI_O[0])
-                                                      0.222     9.308 r  vga_gen/VGA_R_OBUF[3]_inst_i_31/O[0]
-                         net (fo=1, routed)           0.798    10.106    vga_gen/symbol_id2[4]
-    SLICE_X2Y28          CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.554    10.660 r  vga_gen/VGA_R_OBUF[3]_inst_i_11/O[3]
-                         net (fo=10, routed)          1.047    11.707    rand_mat/VGA_R_OBUF[3]_inst_i_5_0[3]
-    SLICE_X2Y26          LUT6 (Prop_lut6_I4_O)        0.307    12.014 f  rand_mat/VGA_R_OBUF[3]_inst_i_13/O
-                         net (fo=1, routed)           0.796    12.810    rand_mat/VGA_R_OBUF[3]_inst_i_13_n_0
-    SLICE_X2Y26          LUT6 (Prop_lut6_I5_O)        0.124    12.934 f  rand_mat/VGA_R_OBUF[3]_inst_i_3/O
-                         net (fo=3, routed)           0.961    13.895    rand_mat/VGA_R_OBUF[3]_inst_i_3_n_0
-    SLICE_X0Y28          LUT6 (Prop_lut6_I5_O)        0.124    14.019 r  rand_mat/VGA_B_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.021    16.041    VGA_B_OBUF[0]
-    L18                  OBUF (Prop_obuf_I_O)         3.503    19.544 r  VGA_B_OBUF[1]_inst/O
-                         net (fo=0)                   0.000    19.544    VGA_B[1]
-    L18                                                               r  VGA_B[1] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga_gen/v_count_reg[3]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            VGA_R[3]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        19.461ns  (logic 8.859ns (45.525%)  route 10.601ns (54.475%))
-  Logic Levels:           17  (CARRY4=7 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=4 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y30          FDCE                         0.000     0.000 r  vga_gen/v_count_reg[3]/C
-    SLICE_X7Y30          FDCE (Prop_fdce_C_Q)         0.419     0.419 r  vga_gen/v_count_reg[3]/Q
-                         net (fo=14, routed)          0.871     1.290    vga_gen/py[3]
-    SLICE_X5Y30          LUT2 (Prop_lut2_I0_O)        0.299     1.589 r  vga_gen/VGA_R_OBUF[3]_inst_i_67/O
-                         net (fo=1, routed)           0.000     1.589    vga_gen/VGA_R_OBUF[3]_inst_i_67_n_0
-    SLICE_X5Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550     2.139 r  vga_gen/VGA_R_OBUF[3]_inst_i_47/CO[3]
-                         net (fo=1, routed)           0.000     2.139    vga_gen/VGA_R_OBUF[3]_inst_i_47_n_0
-    SLICE_X5Y31          CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     2.452 r  vga_gen/VGA_R_OBUF[3]_inst_i_39/O[3]
-                         net (fo=7, routed)           1.042     3.494    vga_gen/VGA_R_OBUF[3]_inst_i_39_n_4
-    SLICE_X4Y30          LUT3 (Prop_lut3_I0_O)        0.336     3.830 r  vga_gen/VGA_R_OBUF[3]_inst_i_69/O
-                         net (fo=2, routed)           0.811     4.641    vga_gen/VGA_R_OBUF[3]_inst_i_69_n_0
-    SLICE_X4Y30          LUT5 (Prop_lut5_I0_O)        0.327     4.968 r  vga_gen/VGA_R_OBUF[3]_inst_i_72/O
-                         net (fo=1, routed)           0.000     4.968    vga_gen/VGA_R_OBUF[3]_inst_i_72_n_0
-    SLICE_X4Y30          CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     5.369 r  vga_gen/VGA_R_OBUF[3]_inst_i_52/CO[3]
-                         net (fo=1, routed)           0.000     5.369    vga_gen/VGA_R_OBUF[3]_inst_i_52_n_0
-    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271     5.640 r  vga_gen/VGA_R_OBUF[3]_inst_i_40/CO[0]
-                         net (fo=2, routed)           0.650     6.290    vga_gen/VGA_R_OBUF[3]_inst_i_40_n_3
-    SLICE_X4Y32          LUT4 (Prop_lut4_I3_O)        0.399     6.689 r  vga_gen/VGA_R_OBUF[3]_inst_i_35/O
-                         net (fo=5, routed)           1.026     7.715    vga_gen/VGA_R_OBUF[3]_inst_i_35_n_0
-    SLICE_X2Y31          LUT6 (Prop_lut6_I1_O)        0.326     8.041 r  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
-                         net (fo=1, routed)           0.660     8.701    vga_gen/symbol_id3[1]
-    SLICE_X3Y31          CARRY4 (Prop_carry4_DI[3]_CO[3])
-                                                      0.385     9.086 r  vga_gen/VGA_R_OBUF[3]_inst_i_4/CO[3]
-                         net (fo=1, routed)           0.000     9.086    vga_gen/VGA_R_OBUF[3]_inst_i_4_n_0
-    SLICE_X3Y32          CARRY4 (Prop_carry4_CI_O[0])
-                                                      0.222     9.308 r  vga_gen/VGA_R_OBUF[3]_inst_i_31/O[0]
-                         net (fo=1, routed)           0.798    10.106    vga_gen/symbol_id2[4]
-    SLICE_X2Y28          CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.554    10.660 r  vga_gen/VGA_R_OBUF[3]_inst_i_11/O[3]
-                         net (fo=10, routed)          1.047    11.707    rand_mat/VGA_R_OBUF[3]_inst_i_5_0[3]
-    SLICE_X2Y26          LUT6 (Prop_lut6_I4_O)        0.307    12.014 r  rand_mat/VGA_R_OBUF[3]_inst_i_13/O
-                         net (fo=1, routed)           0.796    12.810    rand_mat/VGA_R_OBUF[3]_inst_i_13_n_0
-    SLICE_X2Y26          LUT6 (Prop_lut6_I5_O)        0.124    12.934 r  rand_mat/VGA_R_OBUF[3]_inst_i_3/O
-                         net (fo=3, routed)           1.158    14.092    rand_mat/VGA_R_OBUF[3]_inst_i_3_n_0
-    SLICE_X0Y28          LUT6 (Prop_lut6_I1_O)        0.124    14.216 r  rand_mat/VGA_R_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           1.742    15.958    VGA_R_OBUF[0]
-    N19                  OBUF (Prop_obuf_I_O)         3.502    19.461 r  VGA_R_OBUF[3]_inst/O
-                         net (fo=0)                   0.000    19.461    VGA_R[3]
-    N19                                                               r  VGA_R[3] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga_gen/v_count_reg[3]/C
+  Source:                 vga_gen/v_count_reg[5]/C
                             (rising edge-triggered cell FDCE)
   Destination:            VGA_G[0]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        19.424ns  (logic 8.878ns (45.707%)  route 10.546ns (54.293%))
-  Logic Levels:           17  (CARRY4=7 FDCE=1 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=4 OBUF=1)
+  Data Path Delay:        26.686ns  (logic 12.786ns (47.913%)  route 13.900ns (52.087%))
+  Logic Levels:           24  (CARRY4=12 DSP48E1=1 FDCE=1 LUT1=1 LUT3=3 LUT6=5 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X7Y30          FDCE                         0.000     0.000 r  vga_gen/v_count_reg[3]/C
-    SLICE_X7Y30          FDCE (Prop_fdce_C_Q)         0.419     0.419 r  vga_gen/v_count_reg[3]/Q
-                         net (fo=14, routed)          0.871     1.290    vga_gen/py[3]
-    SLICE_X5Y30          LUT2 (Prop_lut2_I0_O)        0.299     1.589 r  vga_gen/VGA_R_OBUF[3]_inst_i_67/O
-                         net (fo=1, routed)           0.000     1.589    vga_gen/VGA_R_OBUF[3]_inst_i_67_n_0
-    SLICE_X5Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550     2.139 r  vga_gen/VGA_R_OBUF[3]_inst_i_47/CO[3]
-                         net (fo=1, routed)           0.000     2.139    vga_gen/VGA_R_OBUF[3]_inst_i_47_n_0
-    SLICE_X5Y31          CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     2.452 r  vga_gen/VGA_R_OBUF[3]_inst_i_39/O[3]
-                         net (fo=7, routed)           1.042     3.494    vga_gen/VGA_R_OBUF[3]_inst_i_39_n_4
-    SLICE_X4Y30          LUT3 (Prop_lut3_I0_O)        0.336     3.830 r  vga_gen/VGA_R_OBUF[3]_inst_i_69/O
-                         net (fo=2, routed)           0.811     4.641    vga_gen/VGA_R_OBUF[3]_inst_i_69_n_0
-    SLICE_X4Y30          LUT5 (Prop_lut5_I0_O)        0.327     4.968 r  vga_gen/VGA_R_OBUF[3]_inst_i_72/O
-                         net (fo=1, routed)           0.000     4.968    vga_gen/VGA_R_OBUF[3]_inst_i_72_n_0
-    SLICE_X4Y30          CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     5.369 r  vga_gen/VGA_R_OBUF[3]_inst_i_52/CO[3]
-                         net (fo=1, routed)           0.000     5.369    vga_gen/VGA_R_OBUF[3]_inst_i_52_n_0
-    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271     5.640 r  vga_gen/VGA_R_OBUF[3]_inst_i_40/CO[0]
-                         net (fo=2, routed)           0.650     6.290    vga_gen/VGA_R_OBUF[3]_inst_i_40_n_3
-    SLICE_X4Y32          LUT4 (Prop_lut4_I3_O)        0.399     6.689 r  vga_gen/VGA_R_OBUF[3]_inst_i_35/O
-                         net (fo=5, routed)           1.026     7.715    vga_gen/VGA_R_OBUF[3]_inst_i_35_n_0
-    SLICE_X2Y31          LUT6 (Prop_lut6_I1_O)        0.326     8.041 r  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
-                         net (fo=1, routed)           0.660     8.701    vga_gen/symbol_id3[1]
-    SLICE_X3Y31          CARRY4 (Prop_carry4_DI[3]_CO[3])
-                                                      0.385     9.086 r  vga_gen/VGA_R_OBUF[3]_inst_i_4/CO[3]
-                         net (fo=1, routed)           0.000     9.086    vga_gen/VGA_R_OBUF[3]_inst_i_4_n_0
-    SLICE_X3Y32          CARRY4 (Prop_carry4_CI_O[0])
-                                                      0.222     9.308 r  vga_gen/VGA_R_OBUF[3]_inst_i_31/O[0]
-                         net (fo=1, routed)           0.798    10.106    vga_gen/symbol_id2[4]
-    SLICE_X2Y28          CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.554    10.660 r  vga_gen/VGA_R_OBUF[3]_inst_i_11/O[3]
-                         net (fo=10, routed)          1.047    11.707    rand_mat/VGA_R_OBUF[3]_inst_i_5_0[3]
-    SLICE_X2Y26          LUT6 (Prop_lut6_I4_O)        0.307    12.014 r  rand_mat/VGA_R_OBUF[3]_inst_i_13/O
-                         net (fo=1, routed)           0.796    12.810    rand_mat/VGA_R_OBUF[3]_inst_i_13_n_0
-    SLICE_X2Y26          LUT6 (Prop_lut6_I5_O)        0.124    12.934 r  rand_mat/VGA_R_OBUF[3]_inst_i_3/O
-                         net (fo=3, routed)           0.964    13.898    rand_mat/VGA_R_OBUF[3]_inst_i_3_n_0
-    SLICE_X0Y28          LUT6 (Prop_lut6_I4_O)        0.124    14.022 r  rand_mat/VGA_G_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           1.881    15.903    VGA_G_OBUF[0]
-    J17                  OBUF (Prop_obuf_I_O)         3.521    19.424 r  VGA_G_OBUF[0]_inst/O
-                         net (fo=0)                   0.000    19.424    VGA_G[0]
+    SLICE_X3Y2           FDCE                         0.000     0.000 r  vga_gen/v_count_reg[5]/C
+    SLICE_X3Y2           FDCE (Prop_fdce_C_Q)         0.456     0.456 f  vga_gen/v_count_reg[5]/Q
+                         net (fo=30, routed)          2.377     2.833    vga_gen/py[5]
+    SLICE_X5Y6           LUT6 (Prop_lut6_I1_O)        0.124     2.957 r  vga_gen/in_text_region6_i_1/O
+                         net (fo=21, routed)          1.497     4.454    double_ctrl/A[10]
+    DSP48_X0Y0           DSP48E1 (Prop_dsp48e1_A[21]_P[6])
+                                                      3.841     8.295 f  double_ctrl/in_text_region6/P[6]
+                         net (fo=3, routed)           1.165     9.460    double_ctrl/in_text_region6_n_99
+    SLICE_X8Y1           LUT1 (Prop_lut1_I0_O)        0.124     9.584 r  double_ctrl/VGA_R_OBUF[3]_inst_i_311/O
+                         net (fo=1, routed)           0.000     9.584    double_ctrl/p_0_out[6]
+    SLICE_X8Y1           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    10.117 r  double_ctrl/VGA_R_OBUF[3]_inst_i_297/CO[3]
+                         net (fo=1, routed)           0.000    10.117    double_ctrl/VGA_R_OBUF[3]_inst_i_297_n_0
+    SLICE_X8Y2           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    10.440 f  double_ctrl/VGA_R_OBUF[3]_inst_i_303/O[1]
+                         net (fo=1, routed)           0.640    11.080    double_ctrl/in_text_region6__0[10]
+    SLICE_X9Y1           LUT3 (Prop_lut3_I1_O)        0.306    11.386 r  double_ctrl/VGA_R_OBUF[3]_inst_i_299/O
+                         net (fo=1, routed)           0.000    11.386    double_ctrl/VGA_R_OBUF[3]_inst_i_299_n_0
+    SLICE_X9Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    11.787 r  double_ctrl/VGA_R_OBUF[3]_inst_i_265/CO[3]
+                         net (fo=1, routed)           0.000    11.787    double_ctrl/VGA_R_OBUF[3]_inst_i_265_n_0
+    SLICE_X9Y2           CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.009 r  double_ctrl/VGA_R_OBUF[3]_inst_i_252/O[0]
+                         net (fo=3, routed)           1.206    13.215    double_ctrl/VGA_R_OBUF[3]_inst_i_252_n_7
+    SLICE_X6Y1           LUT3 (Prop_lut3_I0_O)        0.299    13.514 r  double_ctrl/VGA_R_OBUF[3]_inst_i_293/O
+                         net (fo=1, routed)           0.000    13.514    double_ctrl/VGA_R_OBUF[3]_inst_i_293_n_0
+    SLICE_X6Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    13.890 r  double_ctrl/VGA_R_OBUF[3]_inst_i_263/CO[3]
+                         net (fo=1, routed)           0.000    13.890    double_ctrl/VGA_R_OBUF[3]_inst_i_263_n_0
+    SLICE_X6Y2           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.007 r  double_ctrl/VGA_R_OBUF[3]_inst_i_231/CO[3]
+                         net (fo=1, routed)           0.000    14.007    double_ctrl/VGA_R_OBUF[3]_inst_i_231_n_0
+    SLICE_X6Y3           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.124 r  double_ctrl/VGA_R_OBUF[3]_inst_i_230/CO[3]
+                         net (fo=1, routed)           0.000    14.124    double_ctrl/VGA_R_OBUF[3]_inst_i_230_n_0
+    SLICE_X6Y4           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.241 r  double_ctrl/VGA_R_OBUF[3]_inst_i_193/CO[3]
+                         net (fo=1, routed)           0.000    14.241    double_ctrl/VGA_R_OBUF[3]_inst_i_193_n_0
+    SLICE_X6Y5           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.358 r  double_ctrl/VGA_R_OBUF[3]_inst_i_192/CO[3]
+                         net (fo=1, routed)           0.000    14.358    double_ctrl/VGA_R_OBUF[3]_inst_i_192_n_0
+    SLICE_X6Y6           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.475 r  double_ctrl/VGA_R_OBUF[3]_inst_i_152/CO[3]
+                         net (fo=1, routed)           0.000    14.475    double_ctrl/VGA_R_OBUF[3]_inst_i_152_n_0
+    SLICE_X6Y7           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    14.798 r  double_ctrl/VGA_R_OBUF[3]_inst_i_151/O[1]
+                         net (fo=2, routed)           0.946    15.744    double_ctrl/VGA_R_OBUF[3]_inst_i_151_n_6
+    SLICE_X5Y5           LUT3 (Prop_lut3_I2_O)        0.306    16.050 r  double_ctrl/VGA_R_OBUF[3]_inst_i_108/O
+                         net (fo=1, routed)           0.000    16.050    double_ctrl/VGA_R_OBUF[3]_inst_i_108_n_0
+    SLICE_X5Y5           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    16.600 r  double_ctrl/VGA_R_OBUF[3]_inst_i_70/CO[3]
+                         net (fo=1, routed)           1.111    17.711    vga_gen/VGA_R_OBUF[3]_inst_i_14_0[0]
+    SLICE_X2Y5           LUT6 (Prop_lut6_I2_O)        0.124    17.835 r  vga_gen/VGA_R_OBUF[3]_inst_i_41/O
+                         net (fo=1, routed)           0.830    18.665    vga_gen/VGA_R_OBUF[3]_inst_i_41_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I3_O)        0.124    18.789 f  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
+                         net (fo=1, routed)           0.466    19.255    vga_gen/VGA_R_OBUF[3]_inst_i_14_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I1_O)        0.124    19.379 f  vga_gen/VGA_R_OBUF[3]_inst_i_4/O
+                         net (fo=3, routed)           0.972    20.350    vga_gen/v_count_reg[8]_0
+    SLICE_X3Y10          LUT6 (Prop_lut6_I5_O)        0.124    20.474 r  vga_gen/VGA_G_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           2.690    23.165    VGA_G_OBUF[0]
+    J17                  OBUF (Prop_obuf_I_O)         3.521    26.686 r  VGA_G_OBUF[0]_inst/O
+                         net (fo=0)                   0.000    26.686    VGA_G[0]
     J17                                                               r  VGA_G[0] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga_gen/v_count_reg[5]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            VGA_B[1]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        26.619ns  (logic 12.768ns (47.967%)  route 13.851ns (52.033%))
+  Logic Levels:           24  (CARRY4=12 DSP48E1=1 FDCE=1 LUT1=1 LUT3=3 LUT6=5 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y2           FDCE                         0.000     0.000 r  vga_gen/v_count_reg[5]/C
+    SLICE_X3Y2           FDCE (Prop_fdce_C_Q)         0.456     0.456 f  vga_gen/v_count_reg[5]/Q
+                         net (fo=30, routed)          2.377     2.833    vga_gen/py[5]
+    SLICE_X5Y6           LUT6 (Prop_lut6_I1_O)        0.124     2.957 r  vga_gen/in_text_region6_i_1/O
+                         net (fo=21, routed)          1.497     4.454    double_ctrl/A[10]
+    DSP48_X0Y0           DSP48E1 (Prop_dsp48e1_A[21]_P[6])
+                                                      3.841     8.295 f  double_ctrl/in_text_region6/P[6]
+                         net (fo=3, routed)           1.165     9.460    double_ctrl/in_text_region6_n_99
+    SLICE_X8Y1           LUT1 (Prop_lut1_I0_O)        0.124     9.584 r  double_ctrl/VGA_R_OBUF[3]_inst_i_311/O
+                         net (fo=1, routed)           0.000     9.584    double_ctrl/p_0_out[6]
+    SLICE_X8Y1           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    10.117 r  double_ctrl/VGA_R_OBUF[3]_inst_i_297/CO[3]
+                         net (fo=1, routed)           0.000    10.117    double_ctrl/VGA_R_OBUF[3]_inst_i_297_n_0
+    SLICE_X8Y2           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    10.440 f  double_ctrl/VGA_R_OBUF[3]_inst_i_303/O[1]
+                         net (fo=1, routed)           0.640    11.080    double_ctrl/in_text_region6__0[10]
+    SLICE_X9Y1           LUT3 (Prop_lut3_I1_O)        0.306    11.386 r  double_ctrl/VGA_R_OBUF[3]_inst_i_299/O
+                         net (fo=1, routed)           0.000    11.386    double_ctrl/VGA_R_OBUF[3]_inst_i_299_n_0
+    SLICE_X9Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    11.787 r  double_ctrl/VGA_R_OBUF[3]_inst_i_265/CO[3]
+                         net (fo=1, routed)           0.000    11.787    double_ctrl/VGA_R_OBUF[3]_inst_i_265_n_0
+    SLICE_X9Y2           CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.009 r  double_ctrl/VGA_R_OBUF[3]_inst_i_252/O[0]
+                         net (fo=3, routed)           1.206    13.215    double_ctrl/VGA_R_OBUF[3]_inst_i_252_n_7
+    SLICE_X6Y1           LUT3 (Prop_lut3_I0_O)        0.299    13.514 r  double_ctrl/VGA_R_OBUF[3]_inst_i_293/O
+                         net (fo=1, routed)           0.000    13.514    double_ctrl/VGA_R_OBUF[3]_inst_i_293_n_0
+    SLICE_X6Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    13.890 r  double_ctrl/VGA_R_OBUF[3]_inst_i_263/CO[3]
+                         net (fo=1, routed)           0.000    13.890    double_ctrl/VGA_R_OBUF[3]_inst_i_263_n_0
+    SLICE_X6Y2           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.007 r  double_ctrl/VGA_R_OBUF[3]_inst_i_231/CO[3]
+                         net (fo=1, routed)           0.000    14.007    double_ctrl/VGA_R_OBUF[3]_inst_i_231_n_0
+    SLICE_X6Y3           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.124 r  double_ctrl/VGA_R_OBUF[3]_inst_i_230/CO[3]
+                         net (fo=1, routed)           0.000    14.124    double_ctrl/VGA_R_OBUF[3]_inst_i_230_n_0
+    SLICE_X6Y4           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.241 r  double_ctrl/VGA_R_OBUF[3]_inst_i_193/CO[3]
+                         net (fo=1, routed)           0.000    14.241    double_ctrl/VGA_R_OBUF[3]_inst_i_193_n_0
+    SLICE_X6Y5           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.358 r  double_ctrl/VGA_R_OBUF[3]_inst_i_192/CO[3]
+                         net (fo=1, routed)           0.000    14.358    double_ctrl/VGA_R_OBUF[3]_inst_i_192_n_0
+    SLICE_X6Y6           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.475 r  double_ctrl/VGA_R_OBUF[3]_inst_i_152/CO[3]
+                         net (fo=1, routed)           0.000    14.475    double_ctrl/VGA_R_OBUF[3]_inst_i_152_n_0
+    SLICE_X6Y7           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    14.798 r  double_ctrl/VGA_R_OBUF[3]_inst_i_151/O[1]
+                         net (fo=2, routed)           0.946    15.744    double_ctrl/VGA_R_OBUF[3]_inst_i_151_n_6
+    SLICE_X5Y5           LUT3 (Prop_lut3_I2_O)        0.306    16.050 r  double_ctrl/VGA_R_OBUF[3]_inst_i_108/O
+                         net (fo=1, routed)           0.000    16.050    double_ctrl/VGA_R_OBUF[3]_inst_i_108_n_0
+    SLICE_X5Y5           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    16.600 r  double_ctrl/VGA_R_OBUF[3]_inst_i_70/CO[3]
+                         net (fo=1, routed)           1.111    17.711    vga_gen/VGA_R_OBUF[3]_inst_i_14_0[0]
+    SLICE_X2Y5           LUT6 (Prop_lut6_I2_O)        0.124    17.835 r  vga_gen/VGA_R_OBUF[3]_inst_i_41/O
+                         net (fo=1, routed)           0.830    18.665    vga_gen/VGA_R_OBUF[3]_inst_i_41_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I3_O)        0.124    18.789 f  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
+                         net (fo=1, routed)           0.466    19.255    vga_gen/VGA_R_OBUF[3]_inst_i_14_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I1_O)        0.124    19.379 f  vga_gen/VGA_R_OBUF[3]_inst_i_4/O
+                         net (fo=3, routed)           0.970    20.348    rand_mat/VGA_B[0]_0
+    SLICE_X3Y10          LUT6 (Prop_lut6_I2_O)        0.124    20.472 r  rand_mat/VGA_B_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           2.643    23.116    VGA_B_OBUF[0]
+    L18                  OBUF (Prop_obuf_I_O)         3.503    26.619 r  VGA_B_OBUF[1]_inst/O
+                         net (fo=0)                   0.000    26.619    VGA_B[1]
+    L18                                                               r  VGA_B[1] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga_gen/v_count_reg[5]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            VGA_R[3]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        26.494ns  (logic 12.767ns (48.190%)  route 13.727ns (51.810%))
+  Logic Levels:           24  (CARRY4=12 DSP48E1=1 FDCE=1 LUT1=1 LUT3=3 LUT6=5 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y2           FDCE                         0.000     0.000 r  vga_gen/v_count_reg[5]/C
+    SLICE_X3Y2           FDCE (Prop_fdce_C_Q)         0.456     0.456 f  vga_gen/v_count_reg[5]/Q
+                         net (fo=30, routed)          2.377     2.833    vga_gen/py[5]
+    SLICE_X5Y6           LUT6 (Prop_lut6_I1_O)        0.124     2.957 r  vga_gen/in_text_region6_i_1/O
+                         net (fo=21, routed)          1.497     4.454    double_ctrl/A[10]
+    DSP48_X0Y0           DSP48E1 (Prop_dsp48e1_A[21]_P[6])
+                                                      3.841     8.295 f  double_ctrl/in_text_region6/P[6]
+                         net (fo=3, routed)           1.165     9.460    double_ctrl/in_text_region6_n_99
+    SLICE_X8Y1           LUT1 (Prop_lut1_I0_O)        0.124     9.584 r  double_ctrl/VGA_R_OBUF[3]_inst_i_311/O
+                         net (fo=1, routed)           0.000     9.584    double_ctrl/p_0_out[6]
+    SLICE_X8Y1           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    10.117 r  double_ctrl/VGA_R_OBUF[3]_inst_i_297/CO[3]
+                         net (fo=1, routed)           0.000    10.117    double_ctrl/VGA_R_OBUF[3]_inst_i_297_n_0
+    SLICE_X8Y2           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    10.440 f  double_ctrl/VGA_R_OBUF[3]_inst_i_303/O[1]
+                         net (fo=1, routed)           0.640    11.080    double_ctrl/in_text_region6__0[10]
+    SLICE_X9Y1           LUT3 (Prop_lut3_I1_O)        0.306    11.386 r  double_ctrl/VGA_R_OBUF[3]_inst_i_299/O
+                         net (fo=1, routed)           0.000    11.386    double_ctrl/VGA_R_OBUF[3]_inst_i_299_n_0
+    SLICE_X9Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    11.787 r  double_ctrl/VGA_R_OBUF[3]_inst_i_265/CO[3]
+                         net (fo=1, routed)           0.000    11.787    double_ctrl/VGA_R_OBUF[3]_inst_i_265_n_0
+    SLICE_X9Y2           CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.009 r  double_ctrl/VGA_R_OBUF[3]_inst_i_252/O[0]
+                         net (fo=3, routed)           1.206    13.215    double_ctrl/VGA_R_OBUF[3]_inst_i_252_n_7
+    SLICE_X6Y1           LUT3 (Prop_lut3_I0_O)        0.299    13.514 r  double_ctrl/VGA_R_OBUF[3]_inst_i_293/O
+                         net (fo=1, routed)           0.000    13.514    double_ctrl/VGA_R_OBUF[3]_inst_i_293_n_0
+    SLICE_X6Y1           CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    13.890 r  double_ctrl/VGA_R_OBUF[3]_inst_i_263/CO[3]
+                         net (fo=1, routed)           0.000    13.890    double_ctrl/VGA_R_OBUF[3]_inst_i_263_n_0
+    SLICE_X6Y2           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.007 r  double_ctrl/VGA_R_OBUF[3]_inst_i_231/CO[3]
+                         net (fo=1, routed)           0.000    14.007    double_ctrl/VGA_R_OBUF[3]_inst_i_231_n_0
+    SLICE_X6Y3           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.124 r  double_ctrl/VGA_R_OBUF[3]_inst_i_230/CO[3]
+                         net (fo=1, routed)           0.000    14.124    double_ctrl/VGA_R_OBUF[3]_inst_i_230_n_0
+    SLICE_X6Y4           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.241 r  double_ctrl/VGA_R_OBUF[3]_inst_i_193/CO[3]
+                         net (fo=1, routed)           0.000    14.241    double_ctrl/VGA_R_OBUF[3]_inst_i_193_n_0
+    SLICE_X6Y5           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.358 r  double_ctrl/VGA_R_OBUF[3]_inst_i_192/CO[3]
+                         net (fo=1, routed)           0.000    14.358    double_ctrl/VGA_R_OBUF[3]_inst_i_192_n_0
+    SLICE_X6Y6           CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.475 r  double_ctrl/VGA_R_OBUF[3]_inst_i_152/CO[3]
+                         net (fo=1, routed)           0.000    14.475    double_ctrl/VGA_R_OBUF[3]_inst_i_152_n_0
+    SLICE_X6Y7           CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    14.798 r  double_ctrl/VGA_R_OBUF[3]_inst_i_151/O[1]
+                         net (fo=2, routed)           0.946    15.744    double_ctrl/VGA_R_OBUF[3]_inst_i_151_n_6
+    SLICE_X5Y5           LUT3 (Prop_lut3_I2_O)        0.306    16.050 r  double_ctrl/VGA_R_OBUF[3]_inst_i_108/O
+                         net (fo=1, routed)           0.000    16.050    double_ctrl/VGA_R_OBUF[3]_inst_i_108_n_0
+    SLICE_X5Y5           CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    16.600 r  double_ctrl/VGA_R_OBUF[3]_inst_i_70/CO[3]
+                         net (fo=1, routed)           1.111    17.711    vga_gen/VGA_R_OBUF[3]_inst_i_14_0[0]
+    SLICE_X2Y5           LUT6 (Prop_lut6_I2_O)        0.124    17.835 r  vga_gen/VGA_R_OBUF[3]_inst_i_41/O
+                         net (fo=1, routed)           0.830    18.665    vga_gen/VGA_R_OBUF[3]_inst_i_41_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I3_O)        0.124    18.789 f  vga_gen/VGA_R_OBUF[3]_inst_i_14/O
+                         net (fo=1, routed)           0.466    19.255    vga_gen/VGA_R_OBUF[3]_inst_i_14_n_0
+    SLICE_X2Y6           LUT6 (Prop_lut6_I1_O)        0.124    19.379 f  vga_gen/VGA_R_OBUF[3]_inst_i_4/O
+                         net (fo=3, routed)           1.147    20.526    double_ctrl/VGA_R[0]_0
+    SLICE_X2Y10          LUT6 (Prop_lut6_I2_O)        0.124    20.650 r  double_ctrl/VGA_R_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           2.342    22.992    VGA_R_OBUF[0]
+    N19                  OBUF (Prop_obuf_I_O)         3.502    26.494 r  VGA_R_OBUF[3]_inst/O
+                         net (fo=0)                   0.000    26.494    VGA_R[3]
+    N19                                                               r  VGA_R[3] (OUT)
   -------------------------------------------------------------------    -------------------
 
 
@@ -797,94 +998,20 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 rand_mat/btn_edge/btn_sync_reg/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            rand_mat/btn_edge/pulse_reg/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.262ns  (logic 0.141ns (53.727%)  route 0.121ns (46.273%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X0Y17          FDRE                         0.000     0.000 r  rand_mat/btn_edge/btn_sync_reg/C
-    SLICE_X0Y17          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  rand_mat/btn_edge/btn_sync_reg/Q
-                         net (fo=1, routed)           0.121     0.262    rand_mat/btn_edge/btn_sync
-    SLICE_X0Y18          FDRE                                         r  rand_mat/btn_edge/pulse_reg/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 rand_mat/rand_gen/lfsr_reg_reg[4]/C
+  Source:                 rand_mat/rand_gen/lfsr_reg_reg[1]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            rand_mat/rand_gen/lfsr_reg_reg[5]/D
+  Destination:            rand_mat/rand_gen/lfsr_reg_reg[2]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.268ns  (logic 0.141ns (52.631%)  route 0.127ns (47.369%))
+  Data Path Delay:        0.236ns  (logic 0.128ns (54.230%)  route 0.108ns (45.770%))
   Logic Levels:           1  (FDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y23          FDCE                         0.000     0.000 r  rand_mat/rand_gen/lfsr_reg_reg[4]/C
-    SLICE_X1Y23          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  rand_mat/rand_gen/lfsr_reg_reg[4]/Q
-                         net (fo=2, routed)           0.127     0.268    rand_mat/rand_gen/lfsr_reg[4]
-    SLICE_X0Y23          FDPE                                         r  rand_mat/rand_gen/lfsr_reg_reg[5]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 rand_mat/index_reg[3]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            rand_mat/loading_reg/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.272ns  (logic 0.186ns (68.315%)  route 0.086ns (31.685%))
-  Logic Levels:           2  (FDCE=1 LUT6=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X0Y22          FDCE                         0.000     0.000 r  rand_mat/index_reg[3]/C
-    SLICE_X0Y22          FDCE (Prop_fdce_C_Q)         0.141     0.141 f  rand_mat/index_reg[3]/Q
-                         net (fo=5, routed)           0.086     0.227    rand_mat/btn_edge/Q[3]
-    SLICE_X1Y22          LUT6 (Prop_lut6_I1_O)        0.045     0.272 r  rand_mat/btn_edge/loading_i_1/O
-                         net (fo=1, routed)           0.000     0.272    rand_mat/btn_edge_n_9
-    SLICE_X1Y22          FDCE                                         r  rand_mat/loading_reg/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 stake_ctrl/btnU_prev_reg/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            stake_ctrl/stake_val_reg[3]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.280ns  (logic 0.209ns (74.560%)  route 0.071ns (25.440%))
-  Logic Levels:           2  (FDCE=1 LUT6=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X46Y19         FDCE                         0.000     0.000 r  stake_ctrl/btnU_prev_reg/C
-    SLICE_X46Y19         FDCE (Prop_fdce_C_Q)         0.164     0.164 r  stake_ctrl/btnU_prev_reg/Q
-                         net (fo=4, routed)           0.071     0.235    stake_ctrl/btnU_prev
-    SLICE_X47Y19         LUT6 (Prop_lut6_I4_O)        0.045     0.280 r  stake_ctrl/stake_val[3]_i_2/O
-                         net (fo=1, routed)           0.000     0.280    stake_ctrl/stake_val[3]_i_2_n_0
-    SLICE_X47Y19         FDCE                                         r  stake_ctrl/stake_val_reg[3]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 win_anim/flash_state_reg/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            win_anim/flash_state_reg/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.301ns  (logic 0.186ns (61.773%)  route 0.115ns (38.227%))
-  Logic Levels:           2  (FDCE=1 LUT6=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y23          FDCE                         0.000     0.000 r  win_anim/flash_state_reg/C
-    SLICE_X7Y23          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  win_anim/flash_state_reg/Q
-                         net (fo=2, routed)           0.115     0.256    win_anim/flash_on
-    SLICE_X7Y23          LUT6 (Prop_lut6_I5_O)        0.045     0.301 r  win_anim/flash_state_i_1/O
-                         net (fo=1, routed)           0.000     0.301    win_anim/flash_state_i_1_n_0
-    SLICE_X7Y23          FDCE                                         r  win_anim/flash_state_reg/D
+    SLICE_X0Y16          FDCE                         0.000     0.000 r  rand_mat/rand_gen/lfsr_reg_reg[1]/C
+    SLICE_X0Y16          FDCE (Prop_fdce_C_Q)         0.128     0.128 r  rand_mat/rand_gen/lfsr_reg_reg[1]/Q
+                         net (fo=28, routed)          0.108     0.236    rand_mat/rand_gen/lfsr_reg[1]
+    SLICE_X0Y16          FDPE                                         r  rand_mat/rand_gen/lfsr_reg_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
@@ -893,83 +1020,157 @@ Slack:                    inf
   Destination:            rand_mat/rand_gen/lfsr_reg_reg[7]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.313ns  (logic 0.141ns (45.034%)  route 0.172ns (54.966%))
+  Data Path Delay:        0.244ns  (logic 0.128ns (52.387%)  route 0.116ns (47.613%))
   Logic Levels:           1  (FDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X0Y23          FDCE                         0.000     0.000 r  rand_mat/rand_gen/lfsr_reg_reg[6]/C
-    SLICE_X0Y23          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  rand_mat/rand_gen/lfsr_reg_reg[6]/Q
-                         net (fo=1, routed)           0.172     0.313    rand_mat/rand_gen/lfsr_reg[6]
-    SLICE_X0Y23          FDPE                                         r  rand_mat/rand_gen/lfsr_reg_reg[7]/D
+    SLICE_X0Y16          FDCE                         0.000     0.000 r  rand_mat/rand_gen/lfsr_reg_reg[6]/C
+    SLICE_X0Y16          FDCE (Prop_fdce_C_Q)         0.128     0.128 r  rand_mat/rand_gen/lfsr_reg_reg[6]/Q
+                         net (fo=1, routed)           0.116     0.244    rand_mat/rand_gen/lfsr_reg[6]
+    SLICE_X0Y16          FDPE                                         r  rand_mat/rand_gen/lfsr_reg_reg[7]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 rand_mat/next_rand_reg/C
+  Source:                 rand_mat/rand_gen/lfsr_reg_reg[0]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            rand_mat/rand_gen/lfsr_reg_reg[0]/CE
+  Destination:            rand_mat/rand_gen/lfsr_reg_reg[1]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.314ns  (logic 0.141ns (44.940%)  route 0.173ns (55.060%))
+  Data Path Delay:        0.255ns  (logic 0.141ns (55.308%)  route 0.114ns (44.692%))
   Logic Levels:           1  (FDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y22          FDCE                         0.000     0.000 r  rand_mat/next_rand_reg/C
-    SLICE_X1Y22          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  rand_mat/next_rand_reg/Q
-                         net (fo=8, routed)           0.173     0.314    rand_mat/rand_gen/E[0]
-    SLICE_X0Y23          FDCE                                         r  rand_mat/rand_gen/lfsr_reg_reg[0]/CE
+    SLICE_X0Y16          FDCE                         0.000     0.000 r  rand_mat/rand_gen/lfsr_reg_reg[0]/C
+    SLICE_X0Y16          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  rand_mat/rand_gen/lfsr_reg_reg[0]/Q
+                         net (fo=28, routed)          0.114     0.255    rand_mat/rand_gen/lfsr_reg[0]
+    SLICE_X0Y16          FDCE                                         r  rand_mat/rand_gen/lfsr_reg_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 rand_mat/next_rand_reg/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            rand_mat/rand_gen/lfsr_reg_reg[1]/CE
+  Source:                 double_ctrl/lfsr_reg_reg[5]/C
+                            (rising edge-triggered cell FDPE)
+  Destination:            double_ctrl/lfsr_reg_reg[6]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.314ns  (logic 0.141ns (44.940%)  route 0.173ns (55.060%))
-  Logic Levels:           1  (FDCE=1)
+  Data Path Delay:        0.262ns  (logic 0.128ns (48.889%)  route 0.134ns (51.111%))
+  Logic Levels:           1  (FDPE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y22          FDCE                         0.000     0.000 r  rand_mat/next_rand_reg/C
-    SLICE_X1Y22          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  rand_mat/next_rand_reg/Q
-                         net (fo=8, routed)           0.173     0.314    rand_mat/rand_gen/E[0]
-    SLICE_X1Y23          FDCE                                         r  rand_mat/rand_gen/lfsr_reg_reg[1]/CE
+    SLICE_X0Y8           FDPE                         0.000     0.000 r  double_ctrl/lfsr_reg_reg[5]/C
+    SLICE_X0Y8           FDPE (Prop_fdpe_C_Q)         0.128     0.128 r  double_ctrl/lfsr_reg_reg[5]/Q
+                         net (fo=2, routed)           0.134     0.262    double_ctrl/lfsr_reg_reg_n_0_[5]
+    SLICE_X0Y8           FDCE                                         r  double_ctrl/lfsr_reg_reg[6]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 rand_mat/next_rand_reg/C
+  Source:                 rand_mat/rand_gen/lfsr_reg_reg[4]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            rand_mat/rand_gen/lfsr_reg_reg[2]/CE
+  Destination:            rand_mat/rand_gen/lfsr_reg_reg[5]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.314ns  (logic 0.141ns (44.940%)  route 0.173ns (55.060%))
+  Data Path Delay:        0.265ns  (logic 0.141ns (53.234%)  route 0.124ns (46.766%))
   Logic Levels:           1  (FDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y22          FDCE                         0.000     0.000 r  rand_mat/next_rand_reg/C
-    SLICE_X1Y22          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  rand_mat/next_rand_reg/Q
-                         net (fo=8, routed)           0.173     0.314    rand_mat/rand_gen/E[0]
-    SLICE_X1Y23          FDPE                                         r  rand_mat/rand_gen/lfsr_reg_reg[2]/CE
+    SLICE_X0Y16          FDCE                         0.000     0.000 r  rand_mat/rand_gen/lfsr_reg_reg[4]/C
+    SLICE_X0Y16          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  rand_mat/rand_gen/lfsr_reg_reg[4]/Q
+                         net (fo=2, routed)           0.124     0.265    rand_mat/rand_gen/lfsr_reg[4]
+    SLICE_X0Y16          FDPE                                         r  rand_mat/rand_gen/lfsr_reg_reg[5]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 rand_mat/next_rand_reg/C
+  Source:                 double_ctrl/btnC_prev_reg/C
                             (rising edge-triggered cell FDCE)
-  Destination:            rand_mat/rand_gen/lfsr_reg_reg[3]/CE
+  Destination:            double_ctrl/btnC_pulse_reg/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.314ns  (logic 0.141ns (44.940%)  route 0.173ns (55.060%))
+  Data Path Delay:        0.273ns  (logic 0.186ns (68.106%)  route 0.087ns (31.894%))
+  Logic Levels:           2  (FDCE=1 LUT2=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X3Y17          FDCE                         0.000     0.000 r  double_ctrl/btnC_prev_reg/C
+    SLICE_X3Y17          FDCE (Prop_fdce_C_Q)         0.141     0.141 f  double_ctrl/btnC_prev_reg/Q
+                         net (fo=1, routed)           0.087     0.228    double_ctrl/btnC_prev
+    SLICE_X2Y17          LUT2 (Prop_lut2_I1_O)        0.045     0.273 r  double_ctrl/btnC_pulse_i_1/O
+                         net (fo=1, routed)           0.000     0.273    double_ctrl/btnC_pulse0
+    SLICE_X2Y17          FDCE                                         r  double_ctrl/btnC_pulse_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 rand_mat/rand_gen/lfsr_reg_reg[3]/C
+                            (rising edge-triggered cell FDPE)
+  Destination:            rand_mat/rand_gen/lfsr_reg_reg[4]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.275ns  (logic 0.141ns (51.256%)  route 0.134ns (48.744%))
+  Logic Levels:           1  (FDPE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y16          FDPE                         0.000     0.000 r  rand_mat/rand_gen/lfsr_reg_reg[3]/C
+    SLICE_X0Y16          FDPE (Prop_fdpe_C_Q)         0.141     0.141 r  rand_mat/rand_gen/lfsr_reg_reg[3]/Q
+                         net (fo=2, routed)           0.134     0.275    rand_mat/rand_gen/lfsr_reg[3]
+    SLICE_X0Y16          FDCE                                         r  rand_mat/rand_gen/lfsr_reg_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 double_ctrl/btnR_prev_reg/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            double_ctrl/btnR_pulse_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.281ns  (logic 0.227ns (80.665%)  route 0.054ns (19.335%))
+  Logic Levels:           2  (FDCE=1 LUT2=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X1Y16          FDCE                         0.000     0.000 r  double_ctrl/btnR_prev_reg/C
+    SLICE_X1Y16          FDCE (Prop_fdce_C_Q)         0.128     0.128 f  double_ctrl/btnR_prev_reg/Q
+                         net (fo=1, routed)           0.054     0.182    double_ctrl/btnR_prev
+    SLICE_X1Y16          LUT2 (Prop_lut2_I1_O)        0.099     0.281 r  double_ctrl/btnR_pulse_i_1/O
+                         net (fo=1, routed)           0.000     0.281    double_ctrl/btnR_pulse0
+    SLICE_X1Y16          FDCE                                         r  double_ctrl/btnR_pulse_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 rand_mat/btn_edge/btn_prev_reg/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            rand_mat/btn_edge/pulse_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.281ns  (logic 0.227ns (80.665%)  route 0.054ns (19.335%))
+  Logic Levels:           2  (FDRE=1 LUT2=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X1Y15          FDRE                         0.000     0.000 r  rand_mat/btn_edge/btn_prev_reg/C
+    SLICE_X1Y15          FDRE (Prop_fdre_C_Q)         0.128     0.128 f  rand_mat/btn_edge/btn_prev_reg/Q
+                         net (fo=1, routed)           0.054     0.182    rand_mat/btn_edge/btn_prev
+    SLICE_X1Y15          LUT2 (Prop_lut2_I1_O)        0.099     0.281 r  rand_mat/btn_edge/pulse_i_1/O
+                         net (fo=1, routed)           0.000     0.281    rand_mat/btn_edge/pulse_i_1_n_0
+    SLICE_X1Y15          FDRE                                         r  rand_mat/btn_edge/pulse_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 double_ctrl/btnC_sync_reg/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            double_ctrl/btnC_prev_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.282ns  (logic 0.148ns (52.572%)  route 0.134ns (47.428%))
   Logic Levels:           1  (FDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y22          FDCE                         0.000     0.000 r  rand_mat/next_rand_reg/C
-    SLICE_X1Y22          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  rand_mat/next_rand_reg/Q
-                         net (fo=8, routed)           0.173     0.314    rand_mat/rand_gen/E[0]
-    SLICE_X1Y23          FDPE                                         r  rand_mat/rand_gen/lfsr_reg_reg[3]/CE
+    SLICE_X2Y17          FDCE                         0.000     0.000 r  double_ctrl/btnC_sync_reg/C
+    SLICE_X2Y17          FDCE (Prop_fdce_C_Q)         0.148     0.148 r  double_ctrl/btnC_sync_reg/Q
+                         net (fo=2, routed)           0.134     0.282    double_ctrl/btnC_sync
+    SLICE_X3Y17          FDCE                                         r  double_ctrl/btnC_prev_reg/D
   -------------------------------------------------------------------    -------------------
 
 

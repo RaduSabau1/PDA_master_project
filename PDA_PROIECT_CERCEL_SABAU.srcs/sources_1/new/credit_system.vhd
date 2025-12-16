@@ -9,8 +9,12 @@ entity credit_system is
         spin_done  : in  STD_LOGIC;
         stake      : in  STD_LOGIC_VECTOR(3 downto 0);  -- Current stake (1-10)
         matrix     : in  STD_LOGIC_VECTOR(26 downto 0);
-        credits_bcd : out STD_LOGIC_VECTOR(15 downto 0);
-        win_rows   : out STD_LOGIC_VECTOR(2 downto 0)   -- Which rows won (bit 0=row0, bit 1=row1, bit 2=row2)
+        -- Double game interface
+        double_adjust : in  STD_LOGIC_VECTOR(15 downto 0);  -- Signed adjustment for double game
+        apply_adjust  : in  STD_LOGIC;  -- Pulse to apply the adjustment
+        credits_bcd   : out STD_LOGIC_VECTOR(15 downto 0);
+        win_rows      : out STD_LOGIC_VECTOR(2 downto 0);  -- Which rows won (bit 0=row0, bit 1=row1, bit 2=row2)
+        hand_winnings : out STD_LOGIC_VECTOR(15 downto 0)  -- Winnings from current hand (wins * 5 * stake)
     );
 end credit_system;
 
@@ -19,6 +23,7 @@ architecture Behavioral of credit_system is
     signal bcd_reg : STD_LOGIC_VECTOR(15 downto 0) := x"0100";
     signal stake_int : integer range 1 to 10;
     signal win_rows_reg : STD_LOGIC_VECTOR(2 downto 0) := "000";
+    signal last_winnings : integer range 0 to 9999 := 0;  -- Store winnings from last hand
 
     function get_cell(mat : STD_LOGIC_VECTOR(26 downto 0); idx : integer) return STD_LOGIC_VECTOR is
     begin
@@ -42,6 +47,7 @@ begin
         if reset = '1' then
             credits <= 100;
             bcd_reg <= x"0100";
+            last_winnings <= 0;
         elsif rising_edge(clk) then
             -- Always update BCD from current credits (every clock cycle)
             temp_val := credits;
@@ -94,11 +100,24 @@ begin
                 end if;
 
                 credits <= new_credits;
+                last_winnings <= wins * 5 * stake_int;  -- Store hand winnings for double game
+            end if;
+
+            -- Handle double game credit adjustment
+            if apply_adjust = '1' then
+                new_credits := credits + to_integer(signed(double_adjust));
+                if new_credits < 0 then
+                    new_credits := 0;
+                elsif new_credits > 9999 then
+                    new_credits := 9999;
+                end if;
+                credits <= new_credits;
             end if;
         end if;
     end process;
 
     credits_bcd <= bcd_reg;
     win_rows <= win_rows_reg;
+    hand_winnings <= std_logic_vector(to_unsigned(last_winnings, 16));
 
 end Behavioral;

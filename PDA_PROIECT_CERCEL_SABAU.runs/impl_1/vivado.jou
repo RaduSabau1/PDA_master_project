@@ -3,8 +3,8 @@
 # SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Mon Dec 15 19:14:15 2025
-# Process ID         : 69694
+# Start of session at: Mon Dec 15 20:19:04 2025
+# Process ID         : 200992
 # Current directory  : /home/radu/workspace/SCHOOL/PDA/PDA_master_project/PDA_PROIECT_CERCEL_SABAU.runs/impl_1
 # Command line       : vivado -log symbol_renderer.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source symbol_renderer.tcl -notrace
 # Log file           : /home/radu/workspace/SCHOOL/PDA/PDA_master_project/PDA_PROIECT_CERCEL_SABAU.runs/impl_1/symbol_renderer.vdi
@@ -13,12 +13,12 @@
 # Platform           : Ubuntu
 # Operating System   : Ubuntu 24.04.2 LTS
 # Processor Detail   : Intel(R) Core(TM) i7-10850H CPU @ 2.70GHz
-# CPU Frequency      : 2973.535 MHz
+# CPU Frequency      : 2900.034 MHz
 # CPU Physical cores : 6
 # CPU Logical cores  : 12
 # Host memory        : 16501 MB
 # Swap memory        : 4294 MB
 # Total Virtual      : 20796 MB
-# Available Virtual  : 10359 MB
+# Available Virtual  : 10537 MB
 #-----------------------------------------------------------
 source symbol_renderer.tcl -notrace

@@ -11,7 +11,8 @@ entity win_animation is
         win_rows   : in  STD_LOGIC_VECTOR(2 downto 0);
         animating  : out STD_LOGIC;   -- High while animation is running
         flash_on   : out STD_LOGIC;   -- Toggles at 250ms intervals
-        active_rows: out STD_LOGIC_VECTOR(2 downto 0)  -- Which rows to highlight
+        active_rows: out STD_LOGIC_VECTOR(2 downto 0);  -- Which rows to highlight
+        animation_done : out STD_LOGIC  -- Pulse when animation completes
     );
 end win_animation;
 
@@ -26,6 +27,7 @@ architecture Behavioral of win_animation is
     signal total_counter : integer range 0 to TOTAL_DURATION := 0;
     signal stored_rows : STD_LOGIC_VECTOR(2 downto 0) := "000";
     signal spin_done_d1 : STD_LOGIC := '0';  -- Delayed spin_done by 1 clock
+    signal anim_done_pulse : STD_LOGIC := '0';  -- Pulse when animation ends
 
 begin
 
@@ -38,7 +40,9 @@ begin
             total_counter <= 0;
             stored_rows <= "000";
             spin_done_d1 <= '0';
+            anim_done_pulse <= '0';
         elsif rising_edge(clk) then
+            anim_done_pulse <= '0';  -- Default to 0, pulse for one cycle
             -- Delay spin_done by 1 clock so win_rows is valid
             spin_done_d1 <= spin_done;
 
@@ -67,6 +71,7 @@ begin
                     anim_active <= '0';
                     flash_state <= '0';
                     stored_rows <= "000";
+                    anim_done_pulse <= '1';  -- Pulse to signal animation complete
                 end if;
             end if;
         end if;
@@ -75,5 +80,6 @@ begin
     animating <= anim_active;
     flash_on <= flash_state;
     active_rows <= stored_rows;
+    animation_done <= anim_done_pulse;
 
 end Behavioral;

@@ -18,6 +18,7 @@ begin
     begin
         if rising_edge(clk) then
             btn_sync <= btn;
+            btn_prev <= btn_sync;  -- Update previous value for edge detection
             if btn_sync = '1' and btn_prev = '0' then
                 pulse <= '1';
             else

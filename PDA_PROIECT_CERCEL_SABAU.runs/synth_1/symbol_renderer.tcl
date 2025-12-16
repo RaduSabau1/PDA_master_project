@@ -76,6 +76,7 @@ OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
   /home/radu/workspace/SCHOOL/PDA/PDA_master_project/PDA_PROIECT_CERCEL_SABAU.srcs/sources_1/new/button_pulse.vhd
   /home/radu/workspace/SCHOOL/PDA/PDA_master_project/PDA_PROIECT_CERCEL_SABAU.srcs/sources_1/new/credit_system.vhd
+  /home/radu/workspace/SCHOOL/PDA/PDA_master_project/PDA_PROIECT_CERCEL_SABAU.srcs/sources_1/new/double_game.vhd
   /home/radu/workspace/SCHOOL/PDA/PDA_master_project/PDA_PROIECT_CERCEL_SABAU.srcs/sources_1/new/lfsr_random.vhd
   /home/radu/workspace/SCHOOL/PDA/PDA_master_project/PDA_PROIECT_CERCEL_SABAU.srcs/sources_1/new/random_matrix.vhd
   /home/radu/workspace/SCHOOL/PDA/PDA_master_project/PDA_PROIECT_CERCEL_SABAU.srcs/sources_1/new/seven_seg_controller.vhd

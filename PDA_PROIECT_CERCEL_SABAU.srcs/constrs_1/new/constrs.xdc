@@ -16,6 +16,12 @@ set_property IOSTANDARD LVCMOS33 [get_ports btnU]
 set_property PACKAGE_PIN U17 [get_ports btnD]
 set_property IOSTANDARD LVCMOS33 [get_ports btnD]
 
+set_property PACKAGE_PIN T17 [get_ports btnR]
+set_property IOSTANDARD LVCMOS33 [get_ports btnR]
+
+set_property PACKAGE_PIN W19 [get_ports btnL]
+set_property IOSTANDARD LVCMOS33 [get_ports btnL]
+
 ## ====================================================================
 ## Switch SW15 (Display Toggle: credits/stake)
 ## ====================================================================

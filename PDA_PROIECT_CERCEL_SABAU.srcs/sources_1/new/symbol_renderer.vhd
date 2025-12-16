@@ -10,6 +10,8 @@ entity symbol_renderer is
         btnC     : in  STD_LOGIC;
         btnU     : in  STD_LOGIC;  -- Stake increase
         btnD     : in  STD_LOGIC;  -- Stake decrease
+        btnR     : in  STD_LOGIC;  -- Double game: choose red
+        btnL     : in  STD_LOGIC;  -- Double game: choose black
         sw15     : in  STD_LOGIC;  -- Display toggle: 0=credits, 1=stake
         VGA_HS   : out STD_LOGIC;
         VGA_VS   : out STD_LOGIC;
@@ -41,8 +43,11 @@ architecture Behavioral of symbol_renderer is
                spin_done  : in STD_LOGIC;
                stake      : in STD_LOGIC_VECTOR(3 downto 0);
                matrix     : in STD_LOGIC_VECTOR(26 downto 0);
+               double_adjust : in STD_LOGIC_VECTOR(15 downto 0);
+               apply_adjust  : in STD_LOGIC;
                credits_bcd : out STD_LOGIC_VECTOR(15 downto 0);
-               win_rows   : out STD_LOGIC_VECTOR(2 downto 0) );
+               win_rows   : out STD_LOGIC_VECTOR(2 downto 0);
+               hand_winnings : out STD_LOGIC_VECTOR(15 downto 0) );
     end component;
 
     component win_animation
@@ -51,7 +56,8 @@ architecture Behavioral of symbol_renderer is
                win_rows   : in STD_LOGIC_VECTOR(2 downto 0);
                animating  : out STD_LOGIC;
                flash_on   : out STD_LOGIC;
-               active_rows: out STD_LOGIC_VECTOR(2 downto 0) );
+               active_rows: out STD_LOGIC_VECTOR(2 downto 0);
+               animation_done : out STD_LOGIC );
     end component;
 
     component stake_controller
@@ -66,6 +72,27 @@ architecture Behavioral of symbol_renderer is
                value : in STD_LOGIC_VECTOR(15 downto 0);
                seg   : out STD_LOGIC_VECTOR(6 downto 0);
                an    : out STD_LOGIC_VECTOR(3 downto 0) );
+    end component;
+
+    component double_game
+        Port ( clk           : in  STD_LOGIC;
+               reset         : in  STD_LOGIC;
+               spin_done     : in  STD_LOGIC;
+               win_rows      : in  STD_LOGIC_VECTOR(2 downto 0);
+               animation_done: in  STD_LOGIC;
+               btnR          : in  STD_LOGIC;
+               btnL          : in  STD_LOGIC;
+               btnC          : in  STD_LOGIC;
+               pixel_x       : in  STD_LOGIC_VECTOR(9 downto 0);
+               pixel_y       : in  STD_LOGIC_VECTOR(9 downto 0);
+               video_on      : in  STD_LOGIC;
+               stake         : in  STD_LOGIC_VECTOR(3 downto 0);
+               hand_winnings : in  STD_LOGIC_VECTOR(15 downto 0);
+               double_active : out STD_LOGIC;
+               double_rgb    : out STD_LOGIC_VECTOR(11 downto 0);
+               credits_delta : out STD_LOGIC_VECTOR(15 downto 0);
+               apply_delta   : out STD_LOGIC;
+               block_spin    : out STD_LOGIC );
     end component;
 
     signal video_on : STD_LOGIC;
@@ -87,8 +114,25 @@ architecture Behavioral of symbol_renderer is
     signal flash_on : STD_LOGIC;
     signal active_rows : STD_LOGIC_VECTOR(2 downto 0);
     signal draw_win_line : STD_LOGIC;
+    signal animation_done : STD_LOGIC;
+
+    -- Double game signals
+    signal double_active : STD_LOGIC;
+    signal double_rgb : STD_LOGIC_VECTOR(11 downto 0);
+    signal credits_delta : STD_LOGIC_VECTOR(15 downto 0);
+    signal apply_delta : STD_LOGIC;
+    signal block_spin : STD_LOGIC;
+    signal hand_winnings : STD_LOGIC_VECTOR(15 downto 0);
+
+    -- Final RGB output
+    signal final_red, final_green, final_blue : std_logic_vector(3 downto 0);
+
+    -- Combined spin block signal
+    signal spin_block_combined : STD_LOGIC;
 
 begin
+    -- Combine spin blocking signals
+    spin_block_combined <= animating or block_spin;
     vga_gen : vga_controller port map(
         clk100 => clk100, reset => reset,
         hsync => hsync, vsync => vsync,
@@ -98,7 +142,7 @@ begin
 
     rand_mat : random_matrix port map(
         clk => clk100, reset => reset, btnC => btnC,
-        spin_block => animating,
+        spin_block => spin_block_combined,
         matrix_out => matrix, spin_done => spin_done
     );
 
@@ -111,15 +155,37 @@ begin
     credits : credit_system port map(
         clk => clk100, reset => reset,
         spin_done => spin_done, stake => stake,
-        matrix => matrix, credits_bcd => credits_bcd,
-        win_rows => win_rows
+        matrix => matrix,
+        double_adjust => credits_delta,
+        apply_adjust => apply_delta,
+        credits_bcd => credits_bcd,
+        win_rows => win_rows,
+        hand_winnings => hand_winnings
     );
 
     win_anim : win_animation port map(
         clk => clk100, reset => reset,
         spin_done => spin_done, win_rows => win_rows,
         animating => animating, flash_on => flash_on,
-        active_rows => active_rows
+        active_rows => active_rows,
+        animation_done => animation_done
+    );
+
+    -- Double game controller
+    double_ctrl : double_game port map(
+        clk => clk100, reset => reset,
+        spin_done => spin_done, win_rows => win_rows,
+        animation_done => animation_done,
+        btnR => btnR, btnL => btnL, btnC => btnC,
+        pixel_x => px, pixel_y => py,
+        video_on => video_on,
+        stake => stake,
+        hand_winnings => hand_winnings,
+        double_active => double_active,
+        double_rgb => double_rgb,
+        credits_delta => credits_delta,
+        apply_delta => apply_delta,
+        block_spin => block_spin
     );
 
     -- Display toggle: sw15=0 shows credits, sw15=1 shows stake
@@ -206,10 +272,15 @@ begin
         end if;
     end process;
 
+    -- Display multiplexer: double game overrides normal display
+    final_red   <= double_rgb(11 downto 8) when double_active = '1' else red;
+    final_green <= double_rgb(7 downto 4)  when double_active = '1' else green;
+    final_blue  <= double_rgb(3 downto 0)  when double_active = '1' else blue;
+
     VGA_HS <= hsync;
     VGA_VS <= vsync;
-    VGA_R <= red;
-    VGA_G <= green;
-    VGA_B <= blue;
+    VGA_R <= final_red;
+    VGA_G <= final_green;
+    VGA_B <= final_blue;
 
 end Behavioral;
